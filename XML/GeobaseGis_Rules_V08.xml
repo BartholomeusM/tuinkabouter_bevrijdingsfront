@@ -1,0 +1,1058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<geobase>
+  <!--Reference documents used:
+  Geobase Functioneel Ontwerp versie0.30.docx
+  TVS00002-1-V007.pdf
+  TVS00005-1-V003.pdf
+  TVS00006-1-V003.pdf
+  incontrol_DR_BBKS_TVS00002-V007.xml
+  incontrol_DR_WB_TVS00005-V003.xml
+  incontrol_DR_WV_TVS00006-V003.xml
+  Documentatie_Workbenches_GeobaseUitgebreid.docx  
+  WV2Geobase_prod_30-06-11.fmw
+  WB2Geobase_dev.fmw
+  WB2Geobase_productie.fmw * older file used as reference 
+  BBKS2Geobase_SDE_FileGeodatabase.fmw
+  BBKS2Geobase_SDE_Afdekconstructie.fmw  
+  AttributeChecker.fmx
+  AttributeRetriever.fmx
+  CAD2GeoBase.py
+  CAD2GeoBaseAttributeRetriever.fmx
+  DutchDateFormatter.fmx
+  GeoBaseGeometryValidator.fmx
+  JDSAttributeChecker.fmx
+  JDSAttributeRetriever.fmx
+  KabelObjectSnapper.fmx
+  TekeningLogger.fmx
+  WithinDutchBoundsChecker.fmx
+   -->
+  <versions>
+    <!--The supported TVS versions-->
+    <version tvs="TVS00006" number="003" description="Wisselverwarming en Gas"/>
+    <version tvs="TVS00002" number="007" description="Kabel Situatie"/>
+    <version tvs="TVS00005" number="003" description="Water en Brand"/>
+    <version tvs="TVS00003" number="003" description="Riool, Drainage en Diesel"/>
+  </versions>
+  <domains>
+    <kabelleidinggroep version="007" values="T,E,B,O,D,V,W"/>
+  </domains>
+  <collections>
+    <drawingRelations>
+      <featureclasses version="007"><![CDATA[Afdekconstructie,Gebouw,KabelLeidingObject,KabelLeidingTrace,LasmofPunt,Trace,TracePunt,MaatvoeringLijnen,MaatvoeringPunten,MaatvoeringVlakken,Kabelleiding]]></featureclasses>
+    </drawingRelations>
+    <cellnames version="007" validFor="TVS00002">
+      <cellname>E_ov_warmtezuil_200</cellname>
+      <cellname>E_vv_depot_voedingskast</cellname>
+      <cellname>E_vv_depot_voedingskast_200</cellname>
+      <cellname>E_vv_grondspot</cellname>
+      <cellname>E_vv_grondspot_200</cellname>
+      <cellname>E_vv_infobord_enkele_paal</cellname>
+      <cellname>E_vv_infobord_enkele_paal_200</cellname>
+      <cellname>E_vv_licht_naambord</cellname>
+      <cellname>E_vv_licht_naambord_200</cellname>
+      <cellname>E_vv_lichtmast_3_maal_A</cellname>
+      <cellname>E_vv_lichtmast_3_maal_A_200</cellname>
+      <cellname>E_vv_lichtmast_3_maal_B</cellname>
+      <cellname>E_vv_lichtmast_3_maal_B_200</cellname>
+      <cellname>E_vv_lichtmast_3_maal_C</cellname>
+      <cellname>E_vv_lichtmast_3_maal_C_200</cellname>
+      <cellname>E_vv_lichtmast_3_maal_D</cellname>
+      <cellname>E_vv_lichtmast_3_maal_D_200</cellname>
+      <cellname>E_vv_lichtmast_4_maal</cellname>
+      <cellname>E_vv_lichtmast_4_maal_200</cellname>
+      <cellname>E_vv_lichtmast_dubbel</cellname>
+      <cellname>E_vv_lichtmast_dubbel_200</cellname>
+      <cellname>E_vv_lichtmast_enkel_A</cellname>
+      <cellname>E_vv_lichtmast_enkel_A_200</cellname>
+      <cellname>E_vv_lichtmast_enkel_B</cellname>
+      <cellname>E_vv_lichtmast_enkel_B_200</cellname>
+      <cellname>E_vv_lichtmast_enkel_C</cellname>
+      <cellname>E_vv_lichtmast_enkel_C_200</cellname>
+      <cellname>E_vv_lichtmast_enkel_D</cellname>
+      <cellname>E_vv_lichtmast_enkel_D_200</cellname>
+      <cellname>kasten_installatiekast</cellname>
+      <cellname>kasten_installatiekast_200</cellname>
+      <cellname>kasten_kast</cellname>
+      <cellname>kasten_kast-klein</cellname>
+      <cellname>kasten_kast-klein_200</cellname>
+      <cellname>kasten_kast_200</cellname>
+      <cellname>maatvoering_trace_A</cellname>
+      <cellname>maatvoering_trace_A_200</cellname>
+      <cellname>maatvoering_trace_B</cellname>
+      <cellname>maatvoering_trace_B_200</cellname>
+      <cellname>T_cta_bak_dubbel</cellname>
+      <cellname>T_cta_bak_dubbel_200</cellname>
+      <cellname>T_cta_bak_enkel_A</cellname>
+      <cellname>T_cta_bak_enkel_A_200</cellname>
+      <cellname>T_cta_bak_enkel_B</cellname>
+      <cellname>T_cta_bak_enkel_B_200</cellname>
+      <cellname>T_cta_pres_met_klok_A</cellname>
+      <cellname>T_cta_pres_met_klok_A_200</cellname>
+      <cellname>T_cta_pres_met_klok_B</cellname>
+      <cellname>T_cta_pres_met_klok_B_200</cellname>
+      <cellname>T_cta_pres_zonder_klok_A</cellname>
+      <cellname>T_cta_pres_zonder_klok_A_200</cellname>
+      <cellname>T_cta_pres_zonder_klok_B</cellname>
+      <cellname>T_cta_pres_zonder_klok_B_200</cellname>
+      <cellname>T_omr_luidspreker_A</cellname>
+      <cellname>T_omr_luidspreker_A_200</cellname>
+      <cellname>T_omr_luidspreker_B</cellname>
+      <cellname>T_omr_luidspreker_B_200</cellname>
+      <cellname>T_omr_luidspreker_C</cellname>
+      <cellname>T_omr_luidspreker_C_200</cellname>
+      <cellname>T_omr_luidspreker_D</cellname>
+      <cellname>T_omr_luidspreker_D_200</cellname>
+      <cellname>T_ov_antenne_telerail_A</cellname>
+      <cellname>T_ov_antenne_telerail_A_200</cellname>
+      <cellname>T_ov_antenne_telerail_B</cellname>
+      <cellname>T_ov_antenne_telerail_B_200</cellname>
+      <cellname>T_ov_camera_A</cellname>
+      <cellname>T_ov_camera_A_200</cellname>
+      <cellname>T_ov_camera_B</cellname>
+      <cellname>T_ov_camera_B_200</cellname>
+      <cellname>T_ov_microfoon_A</cellname>
+      <cellname>T_ov_microfoon_A_200</cellname>
+      <cellname>T_ov_microfoon_B</cellname>
+      <cellname>T_ov_microfoon_B_200</cellname>
+      <cellname>T_ov_roodlicht_camera_A</cellname>
+      <cellname>T_ov_roodlicht_camera_A_200</cellname>
+      <cellname>T_ov_roodlicht_camera_B</cellname>
+      <cellname>T_ov_roodlicht_camera_B_200</cellname>
+      <cellname>T_ov_uurwerk</cellname>
+      <cellname>T_ov_uurwerk_200</cellname>
+      <cellname>T_ov_wifi_antenne_A</cellname>
+      <cellname>T_ov_wifi_antenne_A_200</cellname>
+      <cellname>T_ov_wifi_antenne_B</cellname>
+      <cellname>T_ov_wifi_antenne_B_200</cellname>
+      <cellname>T_ov_windmeter_A</cellname>
+      <cellname>T_ov_windmeter_A_200</cellname>
+      <cellname>T_ov_windmeter_B</cellname>
+      <cellname>T_ov_windmeter_B_200</cellname>
+      <cellname>trace_aansluiting_op_spoor</cellname>
+      <cellname>trace_aansluiting_op_spoor_200</cellname>
+      <cellname>trace_gil_dwarsstreep</cellname>
+      <cellname>trace_gil_dwarsstreep_200</cellname>
+      <cellname>trace_gil_hok</cellname>
+      <cellname>trace_gil_hok_200</cellname>
+      <cellname>trace_in_en_uittredepunt_derden</cellname>
+      <cellname>trace_in_en_uittredepunt_derden_200</cellname>
+      <cellname>trace_invoer</cellname>
+      <cellname>trace_invoer_200</cellname>
+      <cellname>trace_kabel_op_eind_verlaten</cellname>
+      <cellname>trace_kabel_op_eind_verlaten_200</cellname>
+      <cellname>trace_lasmof_handhole_A</cellname>
+      <cellname>trace_lasmof_handhole_A_200</cellname>
+      <cellname>trace_lasmof_handhole_B</cellname>
+      <cellname>trace_lasmof_handhole_B_200</cellname>
+      <cellname>trace_lasmofnummer_3_cijfers</cellname>
+      <cellname>trace_lasmofnummer_3_cijfers_200</cellname>
+      <cellname>trace_lasmofnummer_4_cijfers_of_meer</cellname>
+      <cellname>trace_lasmofnummer_4_cijfers_of_meer_200</cellname>
+      <cellname>trace_ligging_onbekend_object</cellname>
+      <cellname>trace_ligging_onbekend_object_200</cellname>
+      <cellname>trace_slag_in_kabel_A</cellname>
+      <cellname>trace_slag_in_kabel_A_200</cellname>
+      <cellname>trace_slag_in_kabel_B</cellname>
+      <cellname>trace_slag_in_kabel_B_200</cellname>
+      <cellname>trace_slag_in_kabel_C</cellname>
+      <cellname>trace_slag_in_kabel_C_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_A</cellname>
+      <cellname>trace_stijg_en_zakpunt_A_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_B</cellname>
+      <cellname>trace_stijg_en_zakpunt_B_200</cellname>
+      <cellname>trace_trekput</cellname>
+      <cellname>trace_trekput_200</cellname>
+    </cellnames>
+    <cellnames version="003" validFor="TVS00005">
+      <cellname>kasten_installatiekast</cellname>
+      <cellname>kasten_installatiekast_200</cellname>
+      <cellname>kasten_pomp</cellname>
+      <cellname>kasten_pomp_200</cellname>
+      <cellname>kasten_voedingskast</cellname>
+      <cellname>kasten_voedingskast_200</cellname>
+      <cellname>kasten_watermeter</cellname>
+      <cellname>kasten_watermeter_200</cellname>
+      <cellname>maatvoering_trace_A</cellname>
+      <cellname>maatvoering_trace_A_200</cellname>
+      <cellname>maatvoering_trace_B</cellname>
+      <cellname>maatvoering_trace_B_200</cellname>
+      <cellname>trace_aardelektrode_A</cellname>
+      <cellname>trace_aardelektrode_A_200</cellname>
+      <cellname>trace_aardelektrode_B</cellname>
+      <cellname>trace_aardelektrode_B_200</cellname>
+      <cellname>trace_bovengrondse_brandkraan</cellname>
+      <cellname>trace_bovengrondse_brandkraan_200</cellname>
+      <cellname>trace_geboorde_put</cellname>
+      <cellname>trace_geboorde_put_200</cellname>
+      <cellname>trace_gil_dwarsstreep</cellname>
+      <cellname>trace_gil_dwarsstreep_200</cellname>
+      <cellname>trace_gil_hok</cellname>
+      <cellname>trace_gil_hok_200</cellname>
+      <cellname>trace_handafsluiter</cellname>
+      <cellname>trace_handafsluiter_200</cellname>
+      <cellname>trace_invoer</cellname>
+      <cellname>trace_invoer_200</cellname>
+      <cellname>trace_kabel_op_eind_verlaten</cellname>
+      <cellname>trace_kabel_op_eind_verlaten_200</cellname>
+      <cellname>trace_keerklep_A</cellname>
+      <cellname>trace_keerklep_A_200</cellname>
+      <cellname>trace_keerklep_B</cellname>
+      <cellname>trace_keerklep_B_200</cellname>
+      <cellname>trace_leiding_op_eind</cellname>
+      <cellname>trace_leiding_op_eind_200</cellname>
+      <cellname>trace_ligging_onbekend_object</cellname>
+      <cellname>trace_ligging_onbekend_object_200</cellname>
+      <cellname>trace_lozingspunt_A</cellname>
+      <cellname>trace_lozingspunt_A_200</cellname>
+      <cellname>trace_lozingspunt_B</cellname>
+      <cellname>trace_lozingspunt_B_200</cellname>
+      <cellname>trace_nooddouche</cellname>
+      <cellname>trace_nooddouche_200</cellname>
+      <cellname>trace_ondergrondse_brandkraan</cellname>
+      <cellname>trace_ondergrondse_brandkraan_200</cellname>
+      <cellname>trace_ontluchter</cellname>
+      <cellname>trace_ontluchter_200</cellname>
+      <cellname>trace_slag_in_kabel_A</cellname>
+      <cellname>trace_slag_in_kabel_A_200</cellname>
+      <cellname>trace_slag_in_kabel_B</cellname>
+      <cellname>trace_slag_in_kabel_B_200</cellname>
+      <cellname>trace_slag_in_kabel_C</cellname>
+      <cellname>trace_slag_in_kabel_C_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_A</cellname>
+      <cellname>trace_stijg_en_zakpunt_A_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_B</cellname>
+      <cellname>trace_stijg_en_zakpunt_B_200</cellname>
+      <cellname>trace_Tstuk</cellname>
+      <cellname>trace_Tstuk_200</cellname>
+      <cellname>trace_verloopstuk_A</cellname>
+      <cellname>trace_verloopstuk_A_200</cellname>
+      <cellname>trace_verloopstuk_B</cellname>
+      <cellname>trace_verloopstuk_B_200</cellname>
+      <cellname>trace_vulpunt</cellname>
+      <cellname>trace_vulpunt_200</cellname>
+      <cellname>trace_was_vul_hydrant</cellname>
+      <cellname>trace_was_vul_hydrant_200</cellname>
+    </cellnames>
+    <cellnames version="003" validFor="TVS00006">
+      <cellname>A_anti_icing_drainageput</cellname>
+      <cellname>A_anti_icing_drainageput_200</cellname>
+      <cellname>A_anti_icing_installatiekast</cellname>
+      <cellname>A_anti_icing_installatiekast_200</cellname>
+      <cellname>A_elektra_anti_icing_assenteller</cellname>
+      <cellname>A_elektra_anti_icing_assenteller_200</cellname>
+      <cellname>A_elektra_anti_icing_bedieningskast</cellname>
+      <cellname>A_elektra_anti_icing_bedieningskast_200</cellname>
+      <cellname>A_elektra_anti_icing_instructie_radarbak_A</cellname>
+      <cellname>A_elektra_anti_icing_instructie_radarbak_A_200</cellname>
+      <cellname>A_elektra_anti_icing_instructie_radarbak_B</cellname>
+      <cellname>A_elektra_anti_icing_instructie_radarbak_B_200</cellname>
+      <cellname>A_elektra_anti_icing_tagreader_A</cellname>
+      <cellname>A_elektra_anti_icing_tagreader_A_200</cellname>
+      <cellname>A_elektra_anti_icing_tagreader_B</cellname>
+      <cellname>A_elektra_anti_icing_tagreader_B_200</cellname>
+      <cellname>kasten_aansluitkast_2</cellname>
+      <cellname>kasten_aansluitkast_2_200</cellname>
+      <cellname>kasten_aansluitkast_4</cellname>
+      <cellname>kasten_aansluitkast_4_200</cellname>
+      <cellname>kasten_centrale_buis_unit</cellname>
+      <cellname>kasten_centrale_buis_unit_200</cellname>
+      <cellname>kasten_combikast</cellname>
+      <cellname>kasten_combikast_200</cellname>
+      <cellname>kasten_dataversterker</cellname>
+      <cellname>kasten_dataversterker_200</cellname>
+      <cellname>kasten_gasbewakingskast</cellname>
+      <cellname>kasten_gasbewakingskast_200</cellname>
+      <cellname>kasten_gasdrukverhoger</cellname>
+      <cellname>kasten_gasdrukverhoger_200</cellname>
+      <cellname>kasten_gasmeter</cellname>
+      <cellname>kasten_gasmeter_200</cellname>
+      <cellname>kasten_groepenkast</cellname>
+      <cellname>kasten_groepenkast_200</cellname>
+      <cellname>kasten_noodafsluiterkast</cellname>
+      <cellname>kasten_noodafsluiterkast_200</cellname>
+      <cellname>kasten_PT_koud_A</cellname>
+      <cellname>kasten_PT_koud_A_200</cellname>
+      <cellname>kasten_PT_koud_B</cellname>
+      <cellname>kasten_PT_koud_B_200</cellname>
+      <cellname>kasten_PT_warm_A</cellname>
+      <cellname>kasten_PT_warm_A_200</cellname>
+      <cellname>kasten_PT_warm_B</cellname>
+      <cellname>kasten_PT_warm_B_200</cellname>
+      <cellname>kasten_stuur_trafokast</cellname>
+      <cellname>kasten_stuur_trafokast_200</cellname>
+      <cellname>kasten_weerstation</cellname>
+      <cellname>kasten_weerstation_200</cellname>
+      <cellname>maatvoering_trace_A</cellname>
+      <cellname>maatvoering_trace_A_200</cellname>
+      <cellname>maatvoering_trace_B</cellname>
+      <cellname>maatvoering_trace_B_200</cellname>
+      <cellname>trace_aardelektrode_A</cellname>
+      <cellname>trace_aardelektrode_A_200</cellname>
+      <cellname>trace_aardelektrode_B</cellname>
+      <cellname>trace_aardelektrode_B_200</cellname>
+      <cellname>trace_bodemlus</cellname>
+      <cellname>trace_bodemlus_200</cellname>
+      <cellname>trace_expansieput</cellname>
+      <cellname>trace_expansieput_200</cellname>
+      <cellname>trace_gil_dwarsstreep</cellname>
+      <cellname>trace_gil_dwarsstreep_200</cellname>
+      <cellname>trace_gil_hok</cellname>
+      <cellname>trace_gil_hok_200</cellname>
+      <cellname>trace_handafsluiter</cellname>
+      <cellname>trace_handafsluiter_200</cellname>
+      <cellname>trace_invoer</cellname>
+      <cellname>trace_invoer_200</cellname>
+      <cellname>trace_kabel_op_eind_verlaten</cellname>
+      <cellname>trace_kabel_op_eind_verlaten_200</cellname>
+      <cellname>trace_leiding_op_eind</cellname>
+      <cellname>trace_leiding_op_eind_200</cellname>
+      <cellname>trace_ligging_onbekend_object</cellname>
+      <cellname>trace_ligging_onbekend_object_200</cellname>
+      <cellname>trace_slag_in_kabel_A</cellname>
+      <cellname>trace_slag_in_kabel_A_200</cellname>
+      <cellname>trace_slag_in_kabel_B</cellname>
+      <cellname>trace_slag_in_kabel_B_200</cellname>
+      <cellname>trace_slag_in_kabel_C</cellname>
+      <cellname>trace_slag_in_kabel_C_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_A</cellname>
+      <cellname>trace_stijg_en_zakpunt_A_200</cellname>
+      <cellname>trace_stijg_en_zakpunt_B</cellname>
+      <cellname>trace_stijg_en_zakpunt_B_200</cellname>
+      <cellname>trace_trekput</cellname>
+      <cellname>trace_trekput_200</cellname>
+      <cellname>trace_Tstuk</cellname>
+      <cellname>trace_Tstuk_200</cellname>
+      <cellname>trace_verloopstuk_A</cellname>
+      <cellname>trace_verloopstuk_A_200</cellname>
+      <cellname>trace_verloopstuk_B</cellname>
+      <cellname>trace_verloopstuk_B_200</cellname>
+    </cellnames>
+    <attributes version="007" validFor="TVS00002">
+      <attribute>objectnummer</attribute>
+      <attribute>objectnaam</attribute>
+    </attributes>
+    <maatvoering version="007">
+      <relationships mappingRules="maatvoering2FCL">
+        <relation name="REL_TEKENINGMAATVLAKKEN"/>
+        <relation name="REL_TEKENINGMAATLIJNEN"/>
+        <relation name="REL_TEKENINGMAATPUNTEN"/>
+        <relation name="REL_TEKENINGMAATTEKSTEN"/>
+      </relationships>
+      <fcl mappingRules="maatvoering2FCL">
+        <class name="MaatvoeringVlakken"/>
+        <class name="MaatvoeringLijnen"/>
+        <class name="MaatvoeringPunten"/>
+      </fcl>
+    </maatvoering>
+    <errorcodes version="007" validFor="TVS00002" variant="1">
+      <errorcode>210</errorcode>
+      <errorcode>214</errorcode>
+      <errorcode>215</errorcode>
+      <errorcode>216</errorcode>
+      <errorcode>217</errorcode>
+      <errorcode>218</errorcode>
+      <errorcode><![CDATA[<Blank>]]></errorcode>
+      <errorcode><![CDATA[<Unfiltered>]]></errorcode>
+    </errorcodes>
+    <errorcodes version="007" validFor="TVS00002" variant="2">
+      <errorcode>100</errorcode>
+      <errorcode>101</errorcode>
+      <errorcode>102</errorcode>
+      <errorcode>103</errorcode>
+      <errorcode>104</errorcode>
+      <errorcode>105</errorcode>
+      <errorcode>106</errorcode>
+      <errorcode><![CDATA[<Blank>]]></errorcode>
+      <errorcode><![CDATA[<Unfiltered>]]></errorcode>
+    </errorcodes>
+    <errorcodes version="003" validFor="TVS00005" variant="1">
+      <errorcode>300</errorcode>
+      <errorcode>310</errorcode>
+      <errorcode>320</errorcode>
+      <errorcode>330</errorcode>
+      <errorcode>340</errorcode>
+    </errorcodes>
+    <errorcodes version="003" validFor="TVS00005" variant="2">
+      <errorcode>1</errorcode>
+      <errorcode>2</errorcode>
+      <errorcode>3</errorcode>
+      <errorcode>4</errorcode>
+      <errorcode>5</errorcode>
+      <errorcode>6</errorcode>
+      <errorcode>7</errorcode>
+      <errorcode>8</errorcode>
+      <errorcode>9</errorcode>
+      <errorcode>10</errorcode>
+      <errorcode>11</errorcode>
+      <errorcode>12</errorcode>
+      <errorcode>0</errorcode>
+      <errorcode>100</errorcode>
+      <errorcode>101</errorcode>
+      <errorcode>102</errorcode>
+      <errorcode>103</errorcode>
+      <errorcode>104</errorcode>
+      <errorcode>105</errorcode>
+      <errorcode>106</errorcode>
+      <errorcode>201</errorcode>
+      <errorcode>202</errorcode>
+      <errorcode>203</errorcode>
+    </errorcodes>
+  </collections>
+  <levels>
+    <maatvoeringLevels version="007"><![CDATA[KS-MAATVOERING]]></maatvoeringLevels>
+    <maatvoeringLevels validFor="TVS00005" version="003"><![CDATA[WB-MAATVOERING]]></maatvoeringLevels>
+    <maatvoeringLevels validFor="TVS00006" version="003"><![CDATA[WV-MAATVOERING]]></maatvoeringLevels>
+    <afdekconstructieLevels version="007"><![CDATA[KS-TRACE-AFDEKMATERIAAL,KS-TRACE-AFDEKMATERIAAL (1-200)]]></afdekconstructieLevels>
+    <afdekconstructieLevels validFor="TVS00005" version="003"><![CDATA[WB-TRACE-AFDEKMATERIAAL,WB-TRACE-AFDEKMATERIAAL (1-200)]]></afdekconstructieLevels>
+    <afdekconstructieLevels validFor="TVS00005" version="003"><![CDATA[WV-TRACE-AFDEKMATERIAAL,WV-TRACE-AFDEKMATERIAAL (1-200)]]></afdekconstructieLevels>
+    <traceLevels version="007"><![CDATA[KS-TRACE-BESCHERMING-KOKERTRACE,KS-TRACE-BESCHERMING-KOKERTRACE (1-200),KS-TRACE-BESCHERMING-SPOORKRUISING,KS-TRACE-BESCHERMING-SPOORKRUISING (1-200),KS-TRACE-BESCHERMING-TIJDELIJK,KS-TRACE-BESCHERMING-TIJDELIJK (1-200),KS-TRACE-BESCHERMING-WATERKRUISING,KS-TRACE-BESCHERMING-WATERKRUISING (1-200),KS-TRACE-BESCHERMING-WEGKRUISING,KS-TRACE-BESCHERMING-WEGKRUISING (1-200),KS-TRACE-INDIENST,KS-TRACE-INDIENST-PERRONKAP,KS-TRACE-INHOUD-ONBEKEND,KS-TRACE-VERLATEN,KS-TRACE-VERLATEN (1-200)]]></traceLevels>
+    <traceLevels validFor="TVS00005" version="003"><![CDATA[WB-TRACE-BESCHERMING-KOKERTRACE,WB-TRACE-BESCHERMING-KOKERTRACE (1-200),WB-TRACE-BESCHERMING-SPOORKRUISING,WB-TRACE-BESCHERMING-SPOORKRUISING (1-200),WB-TRACE-BESCHERMING-TIJDELIJK,WB-TRACE-BESCHERMING-TIJDELIJK (1-200),WB-TRACE-BESCHERMING-WATERKRUISING,WB-TRACE-BESCHERMING-WATERKRUISING (1-200),WB-TRACE-BESCHERMING-WEGKRUISING,WB-TRACE-BESCHERMING-WEGKRUISING (1-200),WB-TRACE-INDIENST,WB-TRACE-INDIENST-PERRONKAP,WB-TRACE-INHOUD-ONBEKEND,WB-TRACE-VERLATEN,WB-TRACE-VERLATEN (1-200)]]></traceLevels>
+    <traceLevels validFor="TVS00006" version="003"><![CDATA[WV-TRACE-BESCHERMING-KOKERTRACE,WV-TRACE-BESCHERMING-KOKERTRACE (1-200),WV-TRACE-BESCHERMING-SPOORKRUISING,WV-TRACE-BESCHERMING-SPOORKRUISING (1-200),WV-TRACE-BESCHERMING-TIJDELIJK,WV-TRACE-BESCHERMING-TIJDELIJK (1-200),WV-TRACE-BESCHERMING-WATERKRUISING,WV-TRACE-BESCHERMING-WATERKRUISING (1-200),WV-TRACE-BESCHERMING-WEGKRUISING,WV-TRACE-BESCHERMING-WEGKRUISING (1-200),WV-TRACE-INDIENST,WV-TRACE-INDIENST-PERRONKAP,WV-TRACE-INHOUD-ONBEKEND,WV-TRACE-VERLATEN,WV-TRACE-VERLATEN (1-200)]]></traceLevels>
+    <cellnameLevels version="007"><![CDATA[KS-SYMBOLEN-SYMBOOLTEKSTEN-18,KS-SYMBOLEN-SYMBOOLTEKSTEN-025,KS-SYMBOLEN-SYMBOOLTEKSTEN-050]]></cellnameLevels>
+    <cellnameLevels validFor="TVS00005" version="003"><![CDATA[WB-SYMBOLEN-SYMBOOLTEKSTEN-18,WB-SYMBOLEN-SYMBOOLTEKSTEN-025,WB-SYMBOLEN-SYMBOOLTEKSTEN-050]]></cellnameLevels>
+    <cellnameLevels validFor="TVS00006" version="003"><![CDATA[WV-SYMBOLEN-SYMBOOLTEKSTEN-18,WV-SYMBOLEN-SYMBOOLTEKSTEN-025,WV-SYMBOLEN-SYMBOOLTEKSTEN-050]]></cellnameLevels>  
+  </levels>
+  <transformerOptions version="007">
+    <!--See http://docs.safe.com/fme/html/FME_Transformers/Default.htm#Transformers/geometryvalidator.htm#Input-->
+    <geometryValidator>
+      <parameter name="NaN" >false</parameter>
+      <parameter name="nullGeometry">true</parameter>
+      <parameter name="duplicatePoints" >false</parameter>
+      <parameter name="corruptGeometry" >false</parameter>
+      <parameter name="twoDselfintersection" >false</parameter>
+      <parameter name="selfTouchPolygon" >false</parameter>
+      <parameter name="noPlanarSurface" >false</parameter>
+      <parameter name="invalidSolidBoundaries" >false</parameter>
+      <parameter name="invalidSolidVoid" >false</parameter>
+      <parameter name="simpleValidOGC" >true</parameter>
+      <parameter name="noTextureCoord" >false</parameter>
+      <parameter name="noVertexNorm" >false</parameter>
+    </geometryValidator>
+  </transformerOptions>
+  <rules>
+    <validations>
+      <incontrol>
+        <!--Rule(s) from TVS[4.2.2]-->
+        <rule version="007" type="geo" name="objectOkforNetworkTraceLevels" what="geometry" conditionIsXpath="false" condition="no under or overshoot" levels="./levels/traceLevels[@version='007']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["line represented by single gilnumber must be a continous line and no under- or overshoot when joining"]]></rule>
+        <rule version="003" type="geo" name="objectOkforNetworkTraceLevels" what="geometry" conditionIsXpath="false" condition="no under or overshoot" levels="./levels/traceLevels[@version='003']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["line represented by single gilnumber must be a continous line and no under- or overshoot when joining"]]></rule>
+        <!--Rule(s) from TVS[4.2.3]-->
+        <rule version="007" type="attrib" name="tagSmaller250OkTraceLevels" what="value tag smaller or = 250cm" conditionIsXpath="false" condition="BS maat != null" levels="./levels/traceLevels[@version='007']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["kabeltracés and kabelbedden =<250cm must have a BS value"]]></rule>
+        <rule version="003" type="attrib" name="tagSmaller250OkTraceLevels" what="value tag smaller or = 250cm" conditionIsXpath="false" condition="BS maat != null" levels="./levels/traceLevels[@version='003'][@validFor='%TVSPLACEHOLDER%']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["kabeltracés and kabelbedden =<250cm must have a BS value"]]></rule>
+        <!--Rule(s) from TVS[4.2.3]-->
+        <rule version="007" type="attrib" name="tagGreater250OkTraceLevels" what="value tag > 250cm" conditionIsXpath="false" condition="MV maat != null" levels="./levels/traceLevels[@version='007']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["kabeltracés and kabelbedden > 250cm must have a MV value"]]></rule>
+        <rule version="003" type="attrib" name="tagGreater250OkTraceLevels" what="value tag > 250cm" conditionIsXpath="false" condition="MV maat != null" levels="./levels/traceLevels[@version='003'][@validFor='%TVSPLACEHOLDER%']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["kabeltracés and kabelbedden > 250cm must have a MV value"]]></rule>
+      </incontrol>
+      <gis>
+        <!--Rule(s) from own insight-->
+        <rule version="007" type="geo" name="objectInsideCountry" what="geometry" conditionIsXpath="false" condition="input\shapes\land.shp" levels="*" transformerTypes="Clipper" errorCode="" ><![CDATA["feature object inside dutch country borders"]]></rule>
+        <!--Rule(s) from FO[5.2.1]-->
+        <rule version="007" type="attrib" name="uitgavedatumPresent" what="UITGAVEDATUM" conditionIsXpath="false"  condition="!=NULL" levels="*" transformerTypes="Tester" errorCode="101" ><![CDATA["check availability of UITGAVEDATUM"]]></rule>
+        <rule version="007" type="geo" name="validOGCObject" what="geometry" conditionIsXpath="true" condition=".//transformerOptions[@version='007']/geometryValidator" levels="*" transformerTypes="geometryValidator" errorCode="" ><![CDATA["object must be simple and valid according to OGC"]]></rule>
+        <rule version="003" type="geo" name="validOGCObject" what="geometry" conditionIsXpath="true" condition=".//transformerOptions[@version='007']/geometryValidator" levels="*" transformerTypes="geometryValidator" errorCode="" ><![CDATA["object must be simple and valid according to OGC"]]></rule>
+        <rule version="007" type="geo" name="lengthGreaterThanXYTolerance" what="geometry" conditionIsXpath="false" condition="> geobase x,y" levels="*" transformerTypes="arcSDEGridSnapper" errorCode="" ><![CDATA["length of geometry must be greater than xy tolerance in geobase"]]></rule>
+        <!--Rule(s) from FO[5.2.2]-->
+        <rule version="007" type="geo" name="objectValidGeometryCustomLevels" what="geometry" conditionIsXpath="false" condition="= line, polygon, text" levels="./levels/maatvoeringLevels[@version='007']" transformerTypess="LevelFilter" errorCode="" ><![CDATA["only lines, points, and text allowed"]]></rule>
+        <rule version="007" type="attrib" name="igdsRotationPresentCustomLevels" what="igds_rotatie" conditionIsXpath="false" condition="= text" levels="./levels/maatvoeringLevels[@version='007']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["check for value and round if available"]]></rule>
+        <!--Rule(s) from FO[5.2.3]-->
+        <rule version="007" type="geo" name="objectValidGeometryAfdekLevels" what="geometry" conditionIsXpath="false" condition="= line" levels="levels/afdekconstructieLevels[@version='007']" transformerTypes="LevelFilter" errorCode="330" ><![CDATA["only lines allowed"]]></rule>
+        <rule version="007" type="geo" name="oneIntersectionAllowedAfdekLevels" what="geometry" conditionIsXpath="false" condition="intersection 0 or 1" levels="levels/afdekconstructieLevels[@version='007']" transformerTypes="LevelFilter" errorCode="" ><![CDATA["Max 1 intersection allowed between tracé and afdekconstructie"]]></rule>
+        <!--Rule(s) from FO[5.2.4]-->
+        <rule version="007" type="geo" name="onlyLinesAllowedTraceLevels" what="geometry" conditionIsXpath="false" condition="= line" levels="./levels/traceLevels[@version='007']" transformerTypes="LevelFilter,Embedded Transformer" errorCode="330" ><![CDATA["only lines allowed"]]></rule>
+        <rule version="007" type="attrib" name="kabelleidingGroepTraceLevels" what="Kabelleiding_groep" conditionIsXpath="true" condition="./domains/kabelleidinggroep[@values]" levels="./levels/traceLevels[@version='007']" transformerTypes="LevelFilter" errorCode="320" ><![CDATA["Kabelleiding_Groep must have correct domain value"]]></rule>
+        <!--Rule(s) from FO[5.2.5]-->
+        <rule version="007" type="attrib" name="cellnameOkCellnameLevels" what="cellname" conditionIsXpath="true"  condition="./collections/cellnames[@validFor='%TVSPLACEHOLDER%']" levels="./levels/cellnameLevels[@version='007']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[Cellname must be known in list]]></rule>
+        <rule version="003" type="attrib" name="cellnameOkCellnameLevels" what="cellname" conditionIsXpath="true" condition="./collections/cellnames[@validFor='%TVSPLACEHOLDER%']" levels="./levels/cellnameLevels[@version='003'][@validFor='%TVSPLACEHOLDER%']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[Cellname must be known in list]]></rule>
+        <!--Ckeck alleen of igds_cell van type text is en een waarde heb -->
+        <rule version="003" type="attrib" name="lasmofhandholeOkCellnameLevels" what="igds_cell" conditionIsXpath="true" condition="./collections/cellnames[@validFor='TVS00005']" levels="./levels/cellnameLevels[@version='003'][@validFor='TVS00005']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[Cellname must be known in list]]></rule>
+        <rule version="007" type="attrib" name="lasmofhandholeAttributesOkCellnameLevels" what="*" conditionIsXpath="true" condition="./collections/attributes[@validFor='%TVSPLACEHOLDER%']" levels="./levels/cellnameLevels[@version='007']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[Attributes must be known in list]]></rule>
+        <!--Check to see if following rule (lasmofhandholeLengthOkCellnameLevels) still applies-->
+        <rule version="007" type="attrib" name="lasmofhandholeLengthOkCellnameLevels" what="trace_lasmofhandhole, trace_lasmofnummer" conditionIsXpath="false" condition="len = 3" levels="./levels/cellnameLevels[@version='007']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[only 3 digits allowed]]></rule>
+        <rule version="007" type="attrib" name="lasmofnummerLengthOkCellnameLevels" what="trace_lasmofnummer" conditionIsXpath="false" condition=" len > 4" levels="./levels/cellnameLevels[@version='007']" transformerTypes="LevelFilter" errorCode=""><![CDATA[only 4 digits allowed]]></rule>
+        <!--Check alleen of gevuld zijn en bestaat objectbnummer en objectnaam-->
+        <rule version="007" type="attrib" name="objectnumberOkCellnameLevels" what="objectnummer" conditionIsXpath="false" condition="is numeric" levels="./levels/cellnameLevels[@version='007']" transformerTypes="LevelFilter,Cellnamechecker" errorCode=""><![CDATA[objectnummer must have numeric value]]></rule>
+        <!--Rule(s) from current workbensches-->
+        <rule version="007" type="attrib" name="objectTypeNotEmpty" what="type" conditionIsXpath="false"  condition="!string.IsNUll()" levels="*" transformerTypes="Tester" errorCode=""><![CDATA[TYPE has no empty string value]]></rule>
+        <rule version="003" type="attrib" name="objectTypeNotEmpty" what="type" conditionIsXpath="false" condition="!string.IsNUll()" levels="*" transformerTypes="Tester" errorCode=""><![CDATA[TYPE has no empty string value]]></rule>
+        <rule version="007" type="attrib" name="validSymbolsTVS2" what="igds_cell_name" conditionIsXpath="true" condition="./collections/cellnames[@validFor='%TVSPLACEHOLDER%']" levels="*" transformerTypes="TVS2SymbolFilter" errorCode=""><![CDATA[]]></rule>
+        <rule version="003" type="attrib" name="validSymbolsTVS5" what="igds_cell_name" conditionIsXpath="true" condition="./collections/cellnames[@validFor='TVS00005']" levels="*" transformerTypes="TVS5SymbolFilter" errorCode=""><![CDATA[]]></rule>
+        <rule version="003" type="attrib" name="errorCodesNormal" what="ErrorCode" conditionIsXpath="true" condition="./collections/errorcodes[@version='003'][@validFor='TVS00005'][@variant='1']" levels="*" transformerTypes="Tester" errorCode=""> <![CDATA[Depends on Errorcode]]></rule>
+        <rule version="003" type="attrib" name="errorCodesCustom" what="ErrorCode" conditionIsXpath="true" condition="./collections/errorcodes[@version='003'][@validFor='TVS00005'][@variant='2']" levels="*" transformerTypes="Tester" errorCode=""> <![CDATA[Depends on Errorcode]]></rule>
+        <rule version="003" type="attrib" name="inwinMethodOk" what="INWINMETHODE" conditionIsXpath="false" condition="= -9999" levels="*" transformerTypes="Tester" errorCode=""> <![CDATA[]]></rule>
+        <!--Rule(s) from current custom transformers-->
+        <rule version="007" type="attrib" name="remarkOk" what="Opmerking=''" conditionIsXpath="true" condition="./collections/errorcodes[@version='007'][@validFor='%TVSPLACEHOLDER%'][@variant='1']" levels="*" transformerTypes="AttributeChecker.fmx" errorCode=""> <![CDATA[Depends on Errorcode]]></rule>
+        <rule version="007" type="attrib" name="GILfromMetaValueOk" what="Temp_GilRef" conditionIsXpath="false" condition="!=-9999" levels="*" transformerTypes="CAD2GeoBaseAttributeRetriever.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="geocodeNumberOK" what="GEOCODE_Nummer" conditionIsXpath="false" condition=">0" levels="*" transformerTypes="CAD2GeoBaseAttributeRetriever.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="NoErrorFromPy" what="TEMP_Error from CAD2GeoBase.CAD2SDEAttributeRetriever.py AND TEMP_Error > 0" conditionIsXpath="true"  condition="./collections/errorcodes[@version='007'][@validFor='%TVSPLACEHOLDER%'][@variant='2']" levels="*" transformerTypes="CAD2GeoBaseAttributeRetriever.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="geoCodeExists" what="TEMP_GeocodeExists from CAD2GeoBase.CAD2SDEAttributeRetriever.py" condition="!NULL" levels="*" transformerTypes="CAD2GeoBaseAttributeRetriever.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="tagnamesValid" what="igds_tag_names{}" conditionIsXpath="false"  condition="in regex[PR_META_W[127]3?|PR_META_KG[23]|PR_META_KG10]" levels="*" transformerTypes="CAD2GeoBaseAttributeRetriever.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="distanceToSymbolZero" what="TEMP_DISTANCETOSYMBOL" conditionIsXpath="false"  condition="=0" levels="*" transformerTypes="KabelObjectSnapper.fmx" errorCode=""> <![CDATA[]]></rule>
+        <rule version="007" type="attrib" name="distanceToSymbolZero1" what="TEMP_DISTANCETOSYMBOL_1" conditionIsXpath="false" condition="=0" levels="*" transformerTypes="KabelObjectSnapper.fmx" errorCode=""> <![CDATA[]]></rule>
+        <!--Rule(s) from TVS[4.6.3] -->        
+        <rule version="003" type="geo" name="objectXYWithinBorders" what="Verloopstuk,Expantie,Handafsluiter,T-Stuk,Einddop" conditionIsXpath="false" condition="input\shapes\land.shp" levels="*" transformerTypes="Clipper" errorCode="" ><![CDATA["feature object inside dutch country borders"]]></rule>
+        <rule version="003" type="attrib" name="objectXYHasValue" what="Verloopstuk,Expantie,Handafsluiter,T-Stuk,Einddop" conditionIsXpath="false" condition="IsNotEmpty" levels="*" transformerTypes="Tester" errorCode="" ><![CDATA["feature object value is not empty"]]></rule>
+      </gis>
+    </validations>
+    <mappings>
+      <!--Rule(s) from FO[5.2.2]-->
+      <rule version="007" from="result of rules/validations/rule[@name='objectValidGeometryCustomLevels' and @name='igdsRotationPresentCustomLevels']" to="collections/maatvoering[@version='007']" />
+      <!--Rule(s) from existing software-->
+      <rule version="007" from="TEKENING" to="collections/drawingRelations/featureclasses[@version='007']">
+        <attributes>
+          <attribute from="" to=""/>
+        </attributes>
+      </rule>
+      <rule version="003" from="TEKENING" to="collections/drawingRelations/featureclasses[@version='003']">
+        <attributes>
+          <attribute version="003" from="" to=""/>
+        </attributes>
+      </rule>
+      <rule version="007" from="" to="geobase.InvoeringSet">
+        <attributes>
+          <attribute from="OGC Binary" to="DETAILTEKENING"/>
+          <attribute from="" to="SOORT"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+          <attribute from="" to="GEBWOUWID"/>
+          <attribute from="" to="TRACEID"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="" to="geobase.InvoeringSet">
+        <attributes>
+          <attribute from="OGC Binary" to="DETAILTEKENING"/>
+          <attribute from="" to="SOORT"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+          <attribute from="" to="GEBWOUWID"/>
+          <attribute from="" to="TRACEID"/>
+        </attributes>
+      </rule>
+      <rule version="007" from="" to="geobase.KabelleidingTrace">
+        <attributes>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+          <attribute from="NUMMER" to="NUMMER"/>
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="KABELLEIDING_OUDENAAM" to="OUDENAAM"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="GROEP" to="GROEP"/>
+          <attribute from="SUBGROEP" to="SUBGROEP"/>
+          <attribute from="VAN" to="VAN"/>
+          <attribute from="NAAR" to="NAAR"/>
+          <attribute from="OPMERKING" to="OPMERKING"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="KABELLEIDINGID"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+        </attributes>
+      </rule>
+      <rule version="007" from ="" to ="geobase.KabelleidingTraceTabel">
+        <attributes>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="KABELLEIDINGID"/>
+          <attribute from="" to="TRACEPOSITIE"/>
+        </attributes>
+      </rule>
+      <rule version="007" from ="" to ="geobase.KABELLEIDING">
+        <attributes>
+          <attribute from="KABELLEIDING_NUMMER" to="NUMMER"/>
+          <attribute from="KABELLEIDING_NAAM" to="NAAM"/>
+          <attribute from="KABELLEIDING_OUDENAAM" to="OUDENAAM"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="KABELLEIDING_GROEP" to="GROEP"/>
+          <attribute from="KABELLEIDING_SUBGROEP" to="SUBGROEP"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="VAN"/> <!--After merging with Trace-->
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="NAAR"/> <!--Before mapping with Trace-->
+          <attribute from="KABELLEIDING_OPMERKING" to="OPMERKING"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="KABELLEIDINGID"/>
+        </attributes>
+      </rule>
+      <rule version="003" from ="" to ="geobase.KABELLEIDING">
+        <attributes>
+          <attribute from="KABELLEIDING_NUMMER" to="NUMMER"/>
+          <attribute from="KABELLEIDING_NAAM" to="NAAM"/>
+          <attribute from="KABELLEIDING_OUDENAAM" to="OUDENAAM"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="KABELLEIDING_GROEP" to="GROEP"/>
+          <attribute from="KABELLEIDING_SUBGROEP" to="SUBGROEP"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="VAN"/> <!--After merging with Trace-->
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="NAAR"/> <!--Before mapping with Trace-->
+          <attribute from="KABELLEIDING_OPMERKING" to="OPMERKING"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="KABELLEIDINGID"/>
+        </attributes>
+      </rule>      
+      <rule version="007" from ="Spoorkruising,Wegkruising,Waterkruising,Tijdelijk beschermbuis,Koker,Speciaal,Geul" to ="geobase.Trace">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KMVAN"/>
+          <attribute from="" to="KMTOT"/>
+          <attribute from="" to="OFFSETBEGIN"/>
+          <attribute from="" to="OFFSETEIND"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="Geobase_Trace_TraceInhoudtype" to="INHOUDTYPE"/> <!--Depends on collection-->
+          <attribute from="LEVEL_TRACE_INDIENST" to="INDIENST"/>
+          <attribute from="" to="AFWIJKENDEDIEPTELEGGING"/>
+          <attribute from="OGC Binary" to="DETAILTEKENINGVOORKANT"/>
+          <attribute from="OGC Binary" to="DETAILTEKENINGACHTERKANT"/>
+          <attribute from="" to="OPMERKING"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+          <attribute from="" to="INVOERINGSETID"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="BEGINPUNT"/> <!--Before feature merger-->
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="EINDPUNT"/> <!--After feature merger-->
+        </attributes>
+      </rule>
+      <rule version="003" from ="Spoorkruising,Wegkruising,Waterkruising,Tijdelijk beschermbuis,Koker,Speciaal,Geul" to ="geobase.Trace">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KMVAN"/>
+          <attribute from="" to="KMTOT"/>
+          <attribute from="" to="OFFSETBEGIN"/>
+          <attribute from="" to="OFFSETEIND"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="Geobase_Trace_TraceInhoudtype" to="INHOUDTYPE"/> <!--Depends on collection-->
+          <attribute from="LEVEL_TRACE_INDIENST" to="INDIENST"/>
+          <attribute from="" to="AFWIJKENDEDIEPTELEGGING"/>
+          <attribute from="OGC Binary" to="DETAILTEKENINGVOORKANT"/>
+          <attribute from="OGC Binary" to="DETAILTEKENINGACHTERKANT"/>
+          <attribute from="" to="OPMERKING"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+          <attribute from="" to="INVOERINGSETID"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="BEGINPUNT"/> <!--Before feature merger-->
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="EINDPUNT"/> <!--After feature merger-->
+        </attributes>
+      </rule>      
+      <rule version="007" from="" to="geobase.TracePunt">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KM"/>
+          <attribute from="" to="OFFSET"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="TRACEPUNTTYPE" to="TRACEPUNTTYPE"/> <!--Default value 'Onbekend'-->
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="" to="NUMMER"/>
+          <attribute from="" to="BOVENGRONDSZICHTBAAR"/>
+          <attribute from="" to="AFWIJKENDEDIEPTELEGGING"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>          
+        </attributes>
+      </rule>
+      <rule version="003" from="" to="geobase.TracePunt">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KM"/>
+          <attribute from="" to="OFFSET"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="TRACEPUNTTYPE" to="TRACEPUNTTYPE"/> <!--Default value 'Onbekend'-->
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="" to="NUMMER"/>
+          <attribute from="" to="BOVENGRONDSZICHTBAAR"/>
+          <attribute from="" to="AFWIJKENDEDIEPTELEGGING"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>          
+        </attributes>
+      </rule>
+      <rule version="007" from="*" to="GEOBASE.ScratchTeksten">
+        <attributes>
+          <attribute from="FEATUREID" to="FEATUREID"/>
+          <attribute from="ZORDER" to="ZORDER"/>
+          <attribute from="ANNOTATIONCLASSID" to="ANNOTATIONCLASSID"/>
+          <attribute from="ELEMENT" to="ELEMENT"/>
+          <attribute from="SYMBOLID" to="SYMBOLID"/>
+          <attribute from="STATUS" to="STATUS"/>
+          <attribute from="TEXTSTRING" to="TEXTSTRING"/>
+          <attribute from="FONTNAME" to="FONTNAME"/>
+          <attribute from="FONTSIZE" to="FONTSIZE"/>
+          <attribute from="BOLD" to="BOLD"/>
+          <attribute from="ITALIC" to="ITALIC"/>
+          <attribute from="UNDERLINE" to="UNDERLINE"/>
+          <attribute from="VERTICALALIGNMENT" to="VERTICALALIGNMENT"/>
+          <attribute from="HORIZONTALALIGNMENT" to="HORIZONTALALIGNMENT"/>
+          <attribute from="XOFFSET" to="XOFFSET"/>
+          <attribute from="YOFFSET" to="YOFFSET"/>
+          <attribute from="ANGLE" to="ANGLE"/>
+          <attribute from="FONTLEADING" to="FONTLEADING"/>
+          <attribute from="CHARACTERWIDTH" to="CHARACTERWIDTH"/>
+          <attribute from="CHARACTERSPACING" to="CHARACTERSPACING"/>
+          <attribute from="FLIPANGLE" to="FLIPANGLE"/>
+          <attribute from="OVERRIDE" to="OVERRIDE"/>
+          <attribute from="TEKENING" to="TEKENING"/>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="*" to="GEOBASE.ScratchTeksten">
+        <attributes>
+          <attribute from="FEATUREID" to="FEATUREID"/>
+          <attribute from="ZORDER" to="ZORDER"/>
+          <attribute from="ANNOTATIONCLASSID" to="ANNOTATIONCLASSID"/>
+          <attribute from="ELEMENT" to="ELEMENT"/>
+          <attribute from="SYMBOLID" to="SYMBOLID"/>
+          <attribute from="STATUS" to="STATUS"/>
+          <attribute from="TEXTSTRING" to="TEXTSTRING"/>
+          <attribute from="FONTNAME" to="FONTNAME"/>
+          <attribute from="FONTSIZE" to="FONTSIZE"/>
+          <attribute from="BOLD" to="BOLD"/>
+          <attribute from="ITALIC" to="ITALIC"/>
+          <attribute from="UNDERLINE" to="UNDERLINE"/>
+          <attribute from="VERTICALALIGNMENT" to="VERTICALALIGNMENT"/>
+          <attribute from="HORIZONTALALIGNMENT" to="HORIZONTALALIGNMENT"/>
+          <attribute from="XOFFSET" to="XOFFSET"/>
+          <attribute from="YOFFSET" to="YOFFSET"/>
+          <attribute from="ANGLE" to="ANGLE"/>
+          <attribute from="FONTLEADING" to="FONTLEADING"/>
+          <attribute from="CHARACTERWIDTH" to="CHARACTERWIDTH"/>
+          <attribute from="CHARACTERSPACING" to="CHARACTERSPACING"/>
+          <attribute from="FLIPANGLE" to="FLIPANGLE"/>
+          <attribute from="OVERRIDE" to="OVERRIDE"/>
+          <attribute from="TEKENING" to="TEKENING"/>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+        </attributes>
+      </rule>      
+      <rule version="007" from="*" to="geobase.ScratchVlakken">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+          <attribute from="TEKST" to="TEKST"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="VERTICALALIGNMENT" to="VERTICALALIGNMENT"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="*" to="geobase.ScratchVlakken">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+          <attribute from="TEKST" to="TEKST"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="VERTICALALIGNMENT" to="VERTICALALIGNMENT"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+        </attributes>
+      </rule>      
+      <rule version="007" from="*" to="geobase.ScratchPunten">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSROTATION" to="MSROTATION"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+        </attributes>
+      </rule>      
+      <rule version="003" from="*" to="geobase.ScratchPunten">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSROTATION" to="MSROTATION"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="COLLECTIE" to="COLLECTIE"/>
+        </attributes>
+      </rule>
+      <rule version="007" from="" to ="geobase.MaatvoeringLijnen">
+        <attributes>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="" to ="geobase.MaatvoeringLijnen">
+        <attributes>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+        </attributes>
+      </rule>
+      <rule version="007" from="Nulpunt,Pijltje,Overgang,Pijltje buiten" to ="geobase.MaatvoeringPunten">
+        <attributes>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="igds_text_string" to="TEKST"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="Nulpunt,Pijltje,Overgang,Pijltje buiten" to ="geobase.MaatvoeringPunten">
+        <attributes>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="igds_text_string" to="TEKST"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+        </attributes>
+      </rule>
+      <rule version="007" from="" to="geobase.Afdekconstructie">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KMVAN"/>
+          <attribute from="" to="KMTOT"/>
+          <attribute from="" to="OFFSETBEGIN"/>
+          <attribute from="" to="OFFSETEIND"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="" to="geobase.Afdekconstructie">
+      <attributes>
+        <attribute from="status" to="INWINMETHODE"/>
+        <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+        <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+        <attribute from="" to="KMVAN"/>
+        <attribute from="" to="KMTOT"/>
+        <attribute from="" to="OFFSETBEGIN"/>
+        <attribute from="" to="OFFSETEIND"/>
+        <attribute from="_AssetName" to="TYPE"/>
+        <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+        <attribute from="_mappingGeocode" to="GEOCODE"/>
+        <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+        <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+        <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEID"/>
+      </attributes>
+      </rule>          
+      <rule version="007" from="" to="geobase.MaatvoeringVlakken">
+        <attributes>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>          
+        </attributes>
+      </rule>
+      <rule version="003" from="" to="geobase.MaatvoeringVlakken">
+        <attributes>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>          
+        </attributes>
+      </rule>      
+      <rule version="007" from="*" to="geobase.ScratchLijnen">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+        </attributes>
+      </rule>
+      <rule version="007" from="*" to="geobase.ScratchLijnen">
+        <attributes>
+          <attribute from="MSLEVEL" to="MSLEVEL"/>
+          <attribute from="MSGRAPHICGROUP" to="MSGRAPHICGROUP"/>
+          <attribute from="MSCOLOR" to="MSCOLOR"/>
+          <attribute from="MSLASTMODIFIED" to="MSLASTMODIFIED"/>
+          <attribute from="BRONBESTAND" to="BRONBESTAND"/>
+          <attribute from="SE_ANNO_CAD_DATA" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="MSCELLNAME" to="MSCELLNAME"/>
+          <attribute from="ERRORDESC" to="ERRORDESC"/>
+          <attribute from="ERRORCODE" to="ERRORCODE"/>
+          <attribute from="_mappingDrawingCollection" to="COLLECTIE"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+        </attributes>
+      </rule>      
+      <rule version="007" from="" to="geobase.Meterput">
+        <attributes>
+          <attribute from="" to="AANSLUITCODE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>
+      </rule>
+      <rule version="003" from="" to="geobase.Meterput">
+        <attributes>
+          <attribute from="" to="AANSLUITCODE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>
+      </rule>      
+      <rule version="007" from="" to="geobase.GeboordePut">
+        <attributes>
+          <attribute from="" to="WATERLEVERINGCAPACITEIT"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>        
+      </rule>
+      <rule version="003" from="" to="geobase.GeboordePut">
+        <attributes>
+          <attribute from="" to="WATERLEVERINGCAPACITEIT"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>        
+      </rule>      
+      <rule version="007" from="" to="geobase.LasmofPunt">
+        <attributes>
+          <attribute from="" to="LASMOFTYPE"/>
+          <attribute from="kabelnaam" to="KABEL"/>
+          <attribute from="objectnummer" to="LASMOFNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>          
+        </attributes>
+      </rule>
+      <rule version="007" from="" to="geobase.KabelLeidingObject">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KM"/>
+          <attribute from="" to="OFFSET"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="objectnummer" to="NUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>        
+      </rule>
+      <rule version="003" from="" to="geobase.KabelLeidingObject">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KM"/>
+          <attribute from="" to="OFFSET"/>
+          <attribute from="igds_rotation" to="SYMBOOLROTATIE"/>
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="_AssetName" to="TYPE"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="objectnummer" to="NUMMER"/>
+          <attribute from="local counter (geodb_oid) +_mappingGeocode+_mappingTekeningNummer" to="TRACEPUNTID"/>
+        </attributes>        
+      </rule>      
+      <rule version="007" from="" to="GEOBASE.Gebouw">
+        <attributes>
+          <attribute from="status" to="INWINMETHODE"/>
+          <attribute from="igds_date_last_modified" to="DATUMLAATSTEDIGITALEWIJZIGING"/>
+          <attribute from="" to="GEONAUWKEURIGHEIDXY"/>
+          <attribute from="" to="KMVAN"/>
+          <attribute from="" to="KMTOT"/>
+          <attribute from="" to="OFFSETBEGIN"/>
+          <attribute from="" to="OFFSETEIND"/>
+          <attribute from="objectnaam" to="NAAM"/>
+          <attribute from="OGC Binary" to="SE_ANNO_CAD_DATA"/>
+          <attribute from="_mappingGeocode" to="GEOCODE"/>
+          <attribute from="_mappingTekeningNaam" to="TEKENINGNAAM"/>
+          <attribute from="_mappingTekeningNummer" to="TEKENINGNUMMER"/>
+          <attribute from="" to="INVOERINGSETID"/>
+        </attributes>
+      </rule>
+    </mappings>
+  </rules>
+</geobase>
