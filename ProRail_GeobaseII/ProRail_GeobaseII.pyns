@@ -1,0 +1,6 @@
+# PynSource Version 1.1
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin.'}
+{'type':'umlshape', 'id':'Initialiser', 'x':10, 'y':10, 'width':162, 'height':221, 'attrs':'tvsData|_ruleFile|_dropLocation|ErrorMessage|StateIsOk|DgnFilesOk', 'meths':'__init__|GetRules|GetDrawingFileNames|close'}
+{'type':'umlshape', 'id':'switch', 'x':181, 'y':352, 'width':76, 'height':93, 'attrs':'value', 'meths':'__new__'}
+{'type':'umlshape', 'id':'object', 'x':514, 'y':301, 'width':76, 'height':31, 'attrs':'', 'meths':''}
+{'type':'edge', 'id':'switch_to_object', 'source':'switch', 'target':'object', 'uml_edge_type':'generalisation'}
