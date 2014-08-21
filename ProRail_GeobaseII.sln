@@ -7,8 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ProRail_GeobaseII", "ProRai
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML", "XML", "{17167C01-09D0-48AD-991C-8DECB76EAE69}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Atos\ProRail\TVS7\GeobaseGis_Rules_V08.xml = ..\..\..\Atos\ProRail\TVS7\GeobaseGis_Rules_V08.xml
-		..\..\..\Atos\ProRail\TVS7\GeobaseGis_Rules_V08.xsd = ..\..\..\Atos\ProRail\TVS7\GeobaseGis_Rules_V08.xsd
+		XML\GeobaseGis_Rules_V08.xml = XML\GeobaseGis_Rules_V08.xml
+		XML\GeobaseGis_Rules_V08.xsd = XML\GeobaseGis_Rules_V08.xsd
 	EndProjectSection
 EndProject
 Global

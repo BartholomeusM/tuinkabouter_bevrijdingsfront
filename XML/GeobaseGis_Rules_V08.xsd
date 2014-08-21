@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="geobase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="versions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="version">
+                <xs:complexType>
+                  <xs:attribute name="tvs" type="xs:string" use="required" />
+                  <xs:attribute name="number" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="description" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="domains">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="kabelleidinggroep">
+                <xs:complexType>
+                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="values" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="collections">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drawingRelations">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="featureclasses">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="cellnames">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="cellname" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="validFor" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="attributes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="attribute" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="validFor" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="maatvoering">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="relationships">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="relation">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="mappingRules" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="fcl">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="class">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="mappingRules" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="errorcodes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="errorcode" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="validFor" type="xs:string" use="required" />
+                  <xs:attribute name="variant" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="levels">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="maatvoeringLevels">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                      <xs:attribute name="validFor" type="xs:string" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="afdekconstructieLevels">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                      <xs:attribute name="validFor" type="xs:string" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="traceLevels">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                      <xs:attribute name="validFor" type="xs:string" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="cellnameLevels">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                      <xs:attribute name="validFor" type="xs:string" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="transformerOptions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="geometryValidator">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="parameter">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:boolean">
+                            <xs:attribute name="name" type="xs:string" use="required" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rules">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="validations">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="incontrol">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="rule">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                                  <xs:attribute name="type" type="xs:string" use="required" />
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                  <xs:attribute name="what" type="xs:string" use="required" />
+                                  <xs:attribute name="conditionIsXpath" type="xs:boolean" use="required" />
+                                  <xs:attribute name="condition" type="xs:string" use="required" />
+                                  <xs:attribute name="levels" type="xs:string" use="required" />
+                                  <xs:attribute name="transformerTypes" type="xs:string" use="required" />
+                                  <xs:attribute name="errorCode" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="gis">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="rule">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                                  <xs:attribute name="type" type="xs:string" use="required" />
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                  <xs:attribute name="what" type="xs:string" use="required" />
+                                  <xs:attribute name="conditionIsXpath" type="xs:boolean" use="optional" />
+                                  <xs:attribute name="condition" type="xs:string" use="required" />
+                                  <xs:attribute name="levels" type="xs:string" use="required" />
+                                  <xs:attribute name="transformerTypes" type="xs:string" use="optional" />
+                                  <xs:attribute name="errorCode" type="xs:string" use="required" />
+                                  <xs:attribute name="transformerTypess" type="xs:string" use="optional" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="mappings">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="rule">
+                      <xs:complexType mixed="true">
+                        <xs:sequence minOccurs="0">
+                          <xs:element name="attributes">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="attribute">
+                                  <xs:complexType>
+                                    <xs:attribute name="from" type="xs:string" use="required" />
+                                    <xs:attribute name="to" type="xs:string" use="required" />
+                                    <xs:attribute name="version" type="xs:unsignedByte" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="version" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="from" type="xs:string" use="required" />
+                        <xs:attribute name="to" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
