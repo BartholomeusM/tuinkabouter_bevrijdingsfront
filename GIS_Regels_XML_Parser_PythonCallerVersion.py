@@ -33,7 +33,7 @@ import os,fnmatch
 #------------------------------------------------------------------------------------------------------------
 #                                               HISTORY
 # 12-June-2014: Initial Creation        							A. Dames
-# 23-June-2014: Adapted for PythonCaller transformer in FME			B. Monné
+# 23-June-2014: Adapted for PythonCaller transformer in FME			B. Monnï¿½
 #
 #------------------------------------------------------------------------------------------------------------
 
@@ -199,7 +199,7 @@ class FeatureProcessor(object):
             
             # print(currentValidationParameters)
             
-            # set feauture attributes from current validation
+            # set feature attributes from current validation
             
             feature.setAttribute("_validationName", validationName) 
             feature.setAttribute("_validationWhat", str(currentValidationParameters["what"]))
@@ -207,7 +207,7 @@ class FeatureProcessor(object):
             feature.setAttribute("_validationLevels", str(currentValidationParameters["levels"]))
             feature.setAttribute("_validationErrorcode", str(currentValidationParameters["errorCode"]))
             feature.setAttribute("_validationTransformerType", str(currentValidationParameters["transformerTypes"])) #todo : 's' te veel?
-        except Exception, err:
+        except Exception as err:
             print('ERROR: %s\n' % str(err))
         finally:
             self.pyoutput(feature)
