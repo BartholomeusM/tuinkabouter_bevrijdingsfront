@@ -58,9 +58,9 @@ def LocateFiles(sourceDir):
 
 
 #fetches the values from the xpath string
-def CollectXPathValues(xpathValue, tvsType):
+def CollectXPathValues(gis_rules_file, xpathValue, tvsType):
     results = {}
-    doc = ET.parse(gisRulesFile)
+    doc = ET.parse(gis_rules_file)
     for parent in doc.findall(str(xpathValue).replace('%TVSPLACEHOLDER%', tvsType)):
         if parent.text != '\n      ' and parent.text != None:
             parentValue = parent.text
@@ -85,14 +85,15 @@ def case(*args):
 
 class Initialiser():
     def __init__(self, gisrulesFile, sourceDir):
-        self.tvsData = {}
+
+        self.tvs_data = {}
         self._ruleFile = gisrulesFile
         self._dropLocation = sourceDir
         self.ErrorMessage = ""
         self.StateIsOk = bool(1 != 1)
         self.DgnFilesOk = bool(1 != 1)
 
-# papegaaienduikerTestMessage
+
     def get_rules(self):
         gis_rules_collection = {}
         incontrolFiles = LocateFiles(self._dropLocation)
@@ -109,30 +110,33 @@ class Initialiser():
                             raise Exception(
                                 "The error controlfile {0} contains errors! Process wil terminate.".format(item))
                         #Parse name of INControl rule file used and distill tvs (rules) version from it
-                        self.tvs_version = self.extract_tvs_version(item)
-                    else:  #We process the rule file NB! We assume that we only have two xml files in directory
-                        # todo also process incontrol_rules file for asset names
+                        self.tvs_data = self.extract_tvs_data(item)
+                    else:  #We process the rule file NB! We assume that we only have two xml files
+                            # in directory ;  todo also process incontrol_rules file for asset names
 
-                        self.tvsData = self.extract_tvs_data()
-                if self.tvsData:
-                    gisRuleDoc = ET.parse(self._ruleFile)
-                    for node in gisRuleDoc.findall(".//rules/validations/rule[@version='{0}']".format(
-                            self.tvs_version)):  #Mapping rules moeten ook opgehaald worden
-                        ruleValues = {}  #Collection of all the rules
-                        ruleValues["what"] = node.get("what")
-                        if node.get("levels") == "*":
-                            ruleValues["levels"] = node.get("levels")
-                        else:
-                            ruleValues["levels"] = CollectXPathValues(node.get("levels"), self.tvsData["type"])
-                        ruleValues["transformerTypes"] = node.get("transformerTypes")
-                        ruleValues["errorCode"] = node.get("errorCode")
-                        ruleValues["errorMessage"] = node.text
-                        if node.get("conditionIsXpath") == "true":
-                            ruleValues["condition"] = CollectXPathValues(node.get("condition"), self.tvsData["type"])
-                        else:
-                            ruleValues["condition"] = node.get("condition")
-                        gis_rules_collection[node.get("name")] = ruleValues
-                        self.StateIsOk = bool(1 == 1)
+                        if self.tvs_data:
+                            gisRuleDoc = ET.parse(self._ruleFile)
+
+                            # incontrol rules
+
+                            for node in gisRuleDoc.findall(".//rules/validations/gis/rule[@version='{0}']".format(self.tvs_data["version"])):    #Mapping rules moeten ook opgehaald worden
+                                ruleValues = {}  #Collection of all the rules
+                                ruleValues["what"] = node.get("what")
+                                if node.get("levels") == "*":
+                                    ruleValues["levels"] = node.get("levels")
+                                else:
+                                    ruleValues["levels"] = CollectXPathValues(self._ruleFile, node.get("levels"), self.tvs_data["type"])
+                                ruleValues["transformerTypes"] = node.get("transformerTypes")
+                                ruleValues["errorCode"] = node.get("errorCode")
+                                ruleValues["errorMessage"] = node.text
+                                if node.get("conditionIsXpath") == "true":
+                                    ruleValues["condition"] = CollectXPathValues(self._ruleFile, node.get("condition"), self.tvs_data["type"])
+                                else:
+                                    ruleValues["condition"] = node.get("condition")
+                                gis_rules_collection[node.get("name")] = ruleValues
+                                self.StateIsOk = bool(1 == 1)
+
+                            # gis rules
         except Exception as exc:
             self.ErrorMessage = "The following message was received from verification process \n {0}".format(
                 exc.args[0])
@@ -140,15 +144,17 @@ class Initialiser():
         finally:
             return gis_rules_collection
 
-    def extract_tvs_data(self):
-        pass
+    def extract_tvs_data(self, errorFileName):
+        tvs_data = {}
 
-    def extract_tvs_version(self, errorFileName):
         tree = ET.parse(errorFileName)
         root = tree.getroot()
-        tvs_version = root.attrib["xmlFile"].rsplit("DR_")[1].split(".xml")[0]
+        tvs_data["collection_type_version"] = root.attrib["xmlFile"].rsplit("DR_")[1].split(".xml")[0]
+        tvs_data["version"] = root.attrib["xmlFile"].split(".xml")[0].split("-V")[1]
+        tvs_data["type"] = root.attrib["xmlFile"].split("-")[0].rsplit("_")[3]
+        tvs_data["collection"] = root.attrib["xmlFile"].split(".xml")[0].rsplit("_")[2]
 
-        return tvs_version
+        return tvs_data
 
     def close(self):
         pass
