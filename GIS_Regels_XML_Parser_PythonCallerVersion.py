@@ -84,17 +84,45 @@ def case(*args):
 
 
 class Initialiser():
-    def __init__(self, gisrulesFile, sourceDir):
+    def __init__(self, gisrulesFile, sourceDir, incontrol_errors_xml, incontrol_rules_xml):
 
         self.tvs_data = {}
         self._ruleFile = gisrulesFile
         self._dropLocation = sourceDir
+        self.incontrol_errors_xml = incontrol_errors_xml
+        self.incontrol_rules_xml = incontrol_rules_xml
         self.ErrorMessage = ""
         self.StateIsOk = bool(1 != 1)
         self.DgnFilesOk = bool(1 != 1)
+        # GIS rule xml consists of two types of validation rules, both of which need to be extracted
+        self.rule_types = ["incontrol", "gis"]
 
 
-    def get_rules(self):
+
+    def extract_rules_collection(self, gis_rules_collection):
+        gisRuleDoc = ET.parse(self._ruleFile)
+
+        for type in self.rule_types:
+            for node in gisRuleDoc.findall(".//rules/validations/{0}/rule[@version='{1}']".format(type,
+                    self.tvs_data["version"])):  # Mapping rules moeten ook opgehaald worden
+                ruleValues = {}  #Collection of all the rules
+                ruleValues["what"] = node.get("what")
+                if node.get("levels") == "*":
+                    ruleValues["levels"] = node.get("levels")
+                else:
+                    ruleValues["levels"] = CollectXPathValues(self._ruleFile, node.get("levels"), self.tvs_data["type"])
+                ruleValues["transformerTypes"] = node.get("transformerTypes")
+                ruleValues["errorCode"] = node.get("errorCode")
+                ruleValues["errorMessage"] = node.text
+                if node.get("conditionIsXpath") == "true":
+                    ruleValues["condition"] = CollectXPathValues(self._ruleFile, node.get("condition"),
+                                                                 self.tvs_data["type"])
+                else:
+                    ruleValues["condition"] = node.get("condition")
+                gis_rules_collection[node.get("name")] = ruleValues
+                self.StateIsOk = bool(1 == 1)
+
+    def get_all_rules(self):
         gis_rules_collection = {}
         incontrolFiles = LocateFiles(self._dropLocation)
 
@@ -113,36 +141,32 @@ class Initialiser():
                         self.tvs_data = self.extract_tvs_data(item)
                     else:  #We process the rule file NB! We assume that we only have two xml files
                             # in directory ;  todo also process incontrol_rules file for asset names
-
                         if self.tvs_data:
-                            gisRuleDoc = ET.parse(self._ruleFile)
+                            self.extract_rules_collection(gis_rules_collection)
 
-                            # incontrol rules
-
-                            for node in gisRuleDoc.findall(".//rules/validations/gis/rule[@version='{0}']".format(self.tvs_data["version"])):    #Mapping rules moeten ook opgehaald worden
-                                ruleValues = {}  #Collection of all the rules
-                                ruleValues["what"] = node.get("what")
-                                if node.get("levels") == "*":
-                                    ruleValues["levels"] = node.get("levels")
-                                else:
-                                    ruleValues["levels"] = CollectXPathValues(self._ruleFile, node.get("levels"), self.tvs_data["type"])
-                                ruleValues["transformerTypes"] = node.get("transformerTypes")
-                                ruleValues["errorCode"] = node.get("errorCode")
-                                ruleValues["errorMessage"] = node.text
-                                if node.get("conditionIsXpath") == "true":
-                                    ruleValues["condition"] = CollectXPathValues(self._ruleFile, node.get("condition"), self.tvs_data["type"])
-                                else:
-                                    ruleValues["condition"] = node.get("condition")
-                                gis_rules_collection[node.get("name")] = ruleValues
-                                self.StateIsOk = bool(1 == 1)
-
-                            # gis rules
         except Exception as exc:
             self.ErrorMessage = "The following message was received from verification process \n {0}".format(
                 exc.args[0])
             gis_rules_collection = None
         finally:
             return gis_rules_collection
+
+    def get_all_assets(self):
+        # returns dict of assetnames and their incontrol attributes to identify them in FME
+        all_assets= {}
+
+        # parse nodes containing assetnames
+        _tree = ET.parse(self.incontrol_rules_xml)
+        _root = _tree.getroot()
+        _nodes = _root.findall(".//*[@assetname]")
+        for child in _nodes:
+            _properties = child.findall(".//properties")[0]
+            #create list of attributes for each 'assetname'
+            _properties_dict = _properties.attrib
+            all_assets[child.attrib["assetname"]] = _properties_dict
+
+        return all_assets
+
 
     def extract_tvs_data(self, errorFileName):
         tvs_data = {}
@@ -158,7 +182,6 @@ class Initialiser():
 
     def close(self):
         pass
-
 
 # FME Python Caller Interface:
 class FeatureProcessor(object):
@@ -176,8 +199,7 @@ class FeatureProcessor(object):
 
             starter = Initialiser(gisRulesFile, searchDir)
 
-            validationRules = starter.get_rules()
-
+            validationRules = starter.get_all_rules()
 
             # ToDo Name to be determined from list of validations
 
