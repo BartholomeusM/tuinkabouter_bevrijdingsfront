@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<incontrol version="TEST VOORBEELD VOOR ATOS">
+   <versions>
+      <version naam="BM" nr="00.01.01" datum="17-09-2014">
+         <omschrijving>voorbeeld voor testen: line object + punt object + shape object - hoofdobjecten voorzien van nieuw attribuut 'Assetname'</omschrijving>
+      </version>
+   </versions>
+   <locations sourceDgnDir="$(_DGNDIR)" destinationDgnDir="" errorXmlFile="$(CHECK_OUTPUT_DIR)$(_cadFileName)_incontrol_errors.xml" errorLogFile="$(CHECK_OUTPUT_DIR)$(_cadFileName)_incontrol_errors.txt" openLogFileProgram="$(_TXT_APP)" visualizationProgram="$(_INCA_MDLAPPS_DIR)invis.ma"/>
+   <variables>
+      <discipline>BBKS</discipline>
+      <lvlPrefix>KS-</lvlPrefix>
+   </variables>
+   <defaults properties="1" relations="1"/>
+   <settings askToOverwriteErrorXml="0" maxDgnErrorsToWrite="" dateFormat="%d-%m-%Y" timeFormat="%H:%M:%S" singleOutput="0" autoOpenLogFile="0" checkFinishCommand="">
+      <relations dimensions="2" scanTolerance="1" visualizeElements="1"/>
+   </settings>
+   <elementGroups>
+      <!--trace & geulen & kokers -->
+      <trace1000>
+         <el>Spoorkruising</el>
+         <el>Wegkruising</el>
+         <el>Waterkruising</el>
+         <el>Kokertrace</el>
+         <el>Tijdelijke buis</el>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+         <el>Geultrace verlaten</el>
+      </trace1000>
+      <trace200>
+         <el>Spoorkruising 1:200</el>
+         <el>Wegkruising 1:200</el>
+         <el>Waterkruising 1:200</el>
+         <el>Kokertrace 1:200</el>
+         <el>Tijdelijke buis 1:200</el>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+         <el>Geultrace verlaten 1:200</el>
+      </trace200>
+      <alleKokers>
+         <el>Spoorkruising</el>
+         <el>Spoorkruising 1:200</el>
+         <el>Wegkruising</el>
+         <el>Wegkruising 1:200</el>
+         <el>Waterkruising</el>
+         <el>Waterkruising 1:200</el>
+         <el>Kokertrace</el>
+         <el>Kokertrace 1:200</el>
+         <el>Tijdelijke buis</el>
+         <el>Tijdelijke buis 1:200</el>
+      </alleKokers>
+      <kokers1000>
+         <el>Spoorkruising</el>
+         <el>Wegkruising</el>
+         <el>Waterkruising</el>
+         <el>Kokertrace</el>
+         <el>Tijdelijke buis</el>
+      </kokers1000>
+      <kokers200>
+         <el>Spoorkruising 1:200</el>
+         <el>Wegkruising 1:200</el>
+         <el>Waterkruising 1:200</el>
+         <el>Kokertrace 1:200</el>
+         <el>Tijdelijke buis 1:200</el>
+      </kokers200>
+      <alleGeulen>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+         <el>Geultrace verlaten</el>
+         <el>Geultrace verlaten 1:200</el>
+      </alleGeulen>
+      <geulen1000>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+         <el>Geultrace verlaten</el>
+      </geulen1000>
+      <geulen200>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+         <el>Geultrace verlaten 1:200</el>
+      </geulen200>
+      <geulenID>
+         <el>Geultrace indienst</el>
+         <el>Geultrace in perronkap</el>
+         <el>Geultrace onbekend</el>
+      </geulenID>
+      <geulenV>
+         <el>Geultrace verlaten</el>
+         <el>Geultrace verlaten 1:200</el>
+      </geulenV>
+      <gilhokjes>
+         <el>Gilhokje</el>
+         <el>Gilhokje 1:200</el>
+      </gilhokjes>
+      <dwarsStreepjes>
+         <el>Gil-dwarsstreepje</el>
+         <el>Gil-dwarsstreepje 1:200</el>
+      </dwarsStreepjes>
+      <!--topografie-->
+      <topoInDgn>
+         <el>Topografie Buiten BBK</el>
+      </topoInDgn>
+      <!--symbolen-->
+      <symbolenOrigin>
+         <el>Kabel op eind verlaten</el>
+         <el>Slag in kabel</el>
+         <el>Lasmof of handhole</el>
+         <el>Installatiekast</el>
+         <el>Trekput</el>
+         <el>Kast (RK, HSK, VK, BK, MER)</el>
+         <el>Kast-klein</el>
+         <el>Stijg en Zakpunt</el>
+         <el>Hoofdaarde/Meetinspectiekast/Aardkast</el>
+         <el>Hulpaarde/Meetinspectieput/Aardput</el>
+         <el>Aansluiting [op spoor]</el>
+         <el>Aansluiting [op bovenleiding paal]</el>
+         <el>ATB VV ASK</el>
+         <el>Aardaansluiting</el>
+         <el>In en Uittredepunt Derden</el>
+         <!--seinen-->
+         <el>Aansluitkastje tbv SeinPortaal</el>
+         <el>Lichtsein dwerg</el>
+         <el>Lichtsein hoog</el>
+         <el>W.I. Paalvoet</el>
+         <el>W.I. Paalvoet + bel</el>
+         <el>Lichtbaksein (combi)</el>
+         <el>Lichtbaksein hoog</el>
+         <el>Herhalingssein</el>
+         <el>Verkeerslicht geel en rood</el>
+         <el>Verkeerslicht geel voorijlend</el>
+         <el>Lichtbaksein dwerg</el>
+         <el>Richtingsein (combi)</el>
+         <el>Richtingsein hoog</el>
+         <el>Heuvelsein</el>
+         <el>Stootindicatiesysteem</el>
+         <el>Negenoog</el>
+         <el>Witlicht (combi)</el>
+         <el>Lichtslantaarn met richting</el>
+         <el>Lichtslantaarn</el>
+         <el>Vertreklicht</el>
+         <el>Ontwaarder</el>
+         <el>Remproefsein</el>
+         <el>Sein perronkap</el>
+         <el>Filebak</el>
+         <el>Richtingsein laag</el>
+         <!--overwegen-->
+         <el>Overweg Paalvoet</el>
+         <el>RPG, RG, AG, PAG</el>
+         <el>Bel</el>
+         <el>Detectielus</el>
+         <!--wissels-->
+         <el>Plaatselijk bed.kastje</el>
+         <el>Wisselaansluitkast uit PVR</el>
+         <el>Stopontspoorblok</el>
+         <!--overig-->
+         <el>Brugcontact</el>
+         <el>Aansluitklem</el>
+         <el>Aardelectrode</el>
+         <el>Assenteller</el>
+         <el>Infrarood aftaster</el>
+         <el>Noodknop</el>
+         <el>Nooddeur</el>
+         <el>Windmeter</el>
+         <el>Ligging onbekend-object</el>
+         <!--energievoorziening-->
+         <el>Moterkast bvls</el>
+         <el>Lichtmast (1)</el>
+         <el>Lichtmast (2)</el>
+         <el>Lichtmast (3)</el>
+         <el>Lichtmast (4)</el>
+         <el>Bank + verlicht naambord</el>
+         <el>Grondspot</el>
+         <el>Infobord enkele paal</el>
+         <el>Bowthorpe</el>
+         <el>Depot voedingkast</el>
+         <el>Warmtezuil</el>
+         <!--telecom-->
+         <el>Microfoon</el>
+         <el>Telefoon</el>
+         <el>Luidspreker</el>
+         <el>Uurwerk</el>
+         <el>Roodlichtcamera</el>
+         <el>Camera</el>
+         <el>Cta Bak enkel</el>
+         <el>Cta Bak dubbel</el>
+         <el>Cta Pres Zonder Klok</el>
+         <el>Cta Pres Met Klok</el>
+         <el>Antenne tbv telerail</el>
+         <el>Wifi Antenne</el>
+         <el>Kaartverkoop Automaat</el>
+         <el>Opwaardeer Automaat</el>
+         <el>Kaartlezer</el>
+         <el>Saldolezer</el>
+         <el>Service Alarm Zuil</el>
+         <el>Alarm Info Zuil</el>
+         <!--secties-->
+         <el>Railspoel (los) A</el>
+         <el>Railspoel (los) B</el>
+         <el>Railpot (los) A</el>
+         <el>Railpot (los) B</el>
+         <el>Railpot (indusi) A</el>
+         <el>Railpot (indusi) B</el>
+         <!--ERTMS-->
+         <el>Balise</el>
+         <!--Hotbox + Tagreader-->
+         <el>Tagreader QuoVadis</el>
+         <el>Treinweeginstallatie QuoVadis</el>
+         <el>Aanrijdcontact QuoVadis</el>
+         <el>Holle Dwarsligger QuoVadis</el>
+         <!--voormalige specials-->
+         <el>Toonfrequent Tuning Unit</el>
+         <el>Railspoel jade</el>
+         <el>Wieldetector</el>
+         <el>Railrem</el>
+         <el>Lichtsluis</el>
+         <el>Radar</el>
+         <el>AK Detektielus</el>
+         <el>Kortsluitverbinding</el>
+      </symbolenOrigin>
+      <symbolenOrigin200>
+         <el>Kabel op eind verlaten 1:200</el>
+         <el>Slag in kabel 1:200</el>
+         <el>Lasmof of handhole 1:200</el>
+         <el>Installatiekast 1:200</el>
+         <el>Trekput 1:200</el>
+         <el>Kast (RK, HSK, VK, BK, MER) 1:200</el>
+         <el>Kast-klein 1:200</el>
+         <el>Stijg en Zakpunt 1:200</el>
+         <el>Hoofdaarde/Meetinspectiekast/Aardkast 1:200</el>
+         <el>Hulpaarde/Meetinspectieput/Aardput 1:200</el>
+         <el>Aansluiting [op spoor] 1:200</el>
+         <el>ATB VV ASK 1:200</el>
+         <el>Aardaansluiting 1:200</el>
+         <el>In en Uittredepunt Derden 1:200</el>
+         <!--seinen-->
+         <el>Aansluitkastje tbv SeinPortaal 1:200</el>
+         <el>Lichtsein dwerg 1:200</el>
+         <el>Lichtsein hoog 1:200</el>
+         <el>W.I. Paalvoet 1:200</el>
+         <el>W.I. Paalvoet + bel 1:200</el>
+         <el>Lichtbaksein (combi) 1:200</el>
+         <el>Lichtbaksein hoog 1:200</el>
+         <el>Herhalingssein 1:200</el>
+         <el>Verkeerslicht geel en rood 1:200</el>
+         <el>Verkeerslicht geel voorijlend 1:200</el>
+         <el>Lichtbaksein dwerg 1:200</el>
+         <el>Richtingsein (combi) 1:200</el>
+         <el>Richtingsein hoog 1:200</el>
+         <el>Heuvelsein 1:200</el>
+         <el>Stootindicatiesysteem 1:200</el>
+         <el>Negenoog 1:200</el>
+         <el>Witlicht (combi) 1:200</el>
+         <el>Lichtslantaarn met richting 1:200</el>
+         <el>Lichtslantaarn 1:200</el>
+         <el>Vertreklicht 1:200</el>
+         <el>Ontwaarder 1:200</el>
+         <el>Remproefsein 1:200</el>
+         <el>Sein perronkap 1:200</el>
+         <el>Filebak 1:200</el>
+         <el>Richtingsein laag 1:200</el>
+         <!--overwegen-->
+         <el>Overweg Paalvoet 1:200</el>
+         <el>RPG, RG, AG, PAG 1:200</el>
+         <el>Bel 1:200</el>
+         <el>Detectielus 1:200</el>
+         <!--wissels-->
+         <el>Plaatselijk bed.kastje 1:200</el>
+         <el>Wisselaansluitkast uit PVR 1:200</el>
+         <el>Stopontspoorblok 1:200</el>
+         <!--overig-->
+         <el>Brugcontact 1:200</el>
+         <el>Aansluitklem 1:200</el>
+         <el>Aardelectrode 1:200</el>
+         <el>Assenteller 1:200</el>
+         <el>Infrarood aftaster 1:200</el>
+         <el>Noodknop 1:200</el>
+         <el>Nooddeur 1:200</el>
+         <el>Windmeter 1:200</el>
+         <el>Ligging onbekend-object 1:200</el>
+         <!--energievoorziening-->
+         <el>Moterkast bvls 1:200</el>
+         <el>Lichtmast (1) 1:200</el>
+         <el>Lichtmast (2) 1:200</el>
+         <el>Lichtmast (3) 1:200</el>
+         <el>Lichtmast (4) 1:200</el>
+         <el>Bank + verlicht naambord 1:200</el>
+         <el>Grondspot 1:200</el>
+         <el>Infobord enkele paal 1:200</el>
+         <el>Bowthorpe 1:200</el>
+         <el>Depot voedingkast 1:200</el>
+         <el>Warmtezuil 1:200</el>
+         <!--telecom-->
+         <el>Microfoon 1:200</el>
+         <el>Telefoon 1:200</el>
+         <el>Luidspreker 1:200</el>
+         <el>Uurwerk 1:200</el>
+         <el>Roodlichtcamera 1:200</el>
+         <el>Camera 1:200</el>
+         <el>Cta Bak enkel 1:200</el>
+         <el>Cta Bak dubbel 1:200</el>
+         <el>Cta Pres Zonder Klok 1:200</el>
+         <el>Cta Pres Met Klok 1:200</el>
+         <el>Antenne tbv telerail 1:200</el>
+         <el>Wifi Antenne 1:200</el>
+         <el>Kaartverkoop Automaat 1:200</el>
+         <el>Opwaardeer Automaat 1:200</el>
+         <el>Kaartlezer 1:200</el>
+         <el>Saldolezer 1:200</el>
+         <el>Service Alarm Zuil 1:200</el>
+         <el>Alarm Info Zuil 1:200</el>
+         <!--secties-->
+         <el>Railspoel (los) 1:200 A</el>
+         <el>Railspoel (los) 1:200 B</el>
+         <el>Railpot (los) 1:200 A</el>
+         <el>Railpot (los) 1:200 B</el>
+         <el>Railpot (indusi) 1:200 A</el>
+         <el>Railpot (indusi) 1:200 B</el>
+         <!--ERTMS-->
+         <el>Balise 1:200</el>
+         <el>Tagreader QuoVadis 1:200</el>
+         <el>Treinweeginstallatie QuoVadis 1:200</el>
+         <el>Aanrijdcontact QuoVadis 1:200</el>
+         <el>Holle Dwarsligger QuoVadis 1:200</el>
+         <!--Voormalige specials-->
+         <el>Toonfrequent Tuning Unit 1:200</el>
+         <el>Railspoel jade 1:200</el>
+         <el>Wieldetector 1:200</el>
+         <el>Railrem 1:200</el>
+         <el>Lichtsluis 1:200</el>
+         <el>Radar 1:200</el>
+         <el>AK Detektielus 1:200</el>
+         <el>Kortsluitverbinding 1:200</el>
+      </symbolenOrigin200>
+      <symbolenOriginV>
+         <el>Kabel op eind verlaten</el>
+         <el>Slag in kabel</el>
+         <el>Lasmof of handhole</el>
+         <el>Stijg en Zakpunt</el>
+         <el>Ligging onbekend-object</el>
+      </symbolenOriginV>
+      <symbolenOriginV200>
+         <el>Kabel op eind verlaten 1:200</el>
+         <el>Slag in kabel 1:200</el>
+         <el>Lasmof of handhole 1:200</el>
+         <el>Stijg en Zakpunt 1:200</el>
+         <el>Ligging onbekend-object 1:200</el>
+      </symbolenOriginV200>
+      <symbolenTouch>
+         <el>Scheidingslijn</el>
+         <el>Gebouw</el>
+         <el>Toegangspoort</el>
+         <!--secties-->
+         <el>Railspoel enkel A</el>
+         <el>Railspoel enkel B</el>
+         <el>Railspoel enkel C</el>
+         <el>Railspoel enkel D</el>
+         <el>Railspoel A</el>
+         <el>Railspoel B</el>
+         <el>Railspoel C</el>
+         <el>Railspoel D</el>
+         <el>Railpot enkel A</el>
+         <el>Railpot enkel B</el>
+         <el>Railpot enkel C</el>
+         <el>Railpot enkel D</el>
+         <el>Railpot A</el>
+         <el>Railpot B</el>
+         <el>Railpot C</el>
+         <el>Railpot D</el>
+         <el>Railpot (TL) A</el>
+         <el>Railpot (TL) B</el>
+         <el>PSSSL enkel A</el>
+         <el>PSSSL enkel B</el>
+         <el>PSSSL enkel C</el>
+         <el>PSSSL enkel D</el>
+         <el>PSSSL A</el>
+         <el>PSSSL B</el>
+         <el>PSSSL C</el>
+         <el>PSSSL D</el>
+         <el>Pedaal/Assenteller</el>
+         <!--atb-->
+         <el>ATB VV Baken</el>
+         <el>ATB Lus</el>
+         <el>ATB-NG</el>
+         <!--wissels-->
+         <el>Wisselsignaleringskast</el>
+         <el>Wisselaansluitkast in PVR</el>
+         <el>Wisselaansluitkast met TC</el>
+         <el>Ontspoortong</el>
+      </symbolenTouch>
+      <symbolenTouch200>
+         <el>Scheidingslijn</el>
+         <el>Gebouw</el>
+         <el>Toegangspoort 1:200</el>
+         <!--secties-->
+         <el>Railspoel enkel 1:200 A</el>
+         <el>Railspoel enkel 1:200 B</el>
+         <el>Railspoel enkel 1:200 C</el>
+         <el>Railspoel enkel 1:200 D</el>
+         <el>Railspoel 1:200 A</el>
+         <el>Railspoel 1:200 B</el>
+         <el>Railspoel 1:200 C</el>
+         <el>Railspoel 1:200 D</el>
+         <el>Railpot enkel 1:200 A</el>
+         <el>Railpot enkel 1:200 B</el>
+         <el>Railpot enkel 1:200 C</el>
+         <el>Railpot enkel 1:200 D</el>
+         <el>Railpot 1:200 A</el>
+         <el>Railpot 1:200 B</el>
+         <el>Railpot 1:200 C</el>
+         <el>Railpot 1:200 D</el>
+         <el>Railpot (TL) 1:200 A</el>
+         <el>Railpot (TL) 1:200 B</el>
+         <el>PSSSL enkel 1:200 A</el>
+         <el>PSSSL enkel 1:200 B</el>
+         <el>PSSSL enkel 1:200 C</el>
+         <el>PSSSL enkel 1:200 D</el>
+         <el>PSSSL 1:200 A</el>
+         <el>PSSSL 1:200 B</el>
+         <el>PSSSL 1:200 C</el>
+         <el>PSSSL 1:200 D</el>
+         <el>Pedaal/Assenteller 1:200</el>
+         <!--atb-->
+         <el>ATB VV Baken 1:200</el>
+         <el>ATB Lus 1:200</el>
+         <el>ATB-NG 1:200</el>
+         <!--wissels-->
+         <el>Wisselsignaleringskast 1:200</el>
+         <el>Wisselaansluitkast in PVR 1:200</el>
+         <el>Wisselaansluitkast met TC 1:200</el>
+         <el>Ontspoortong 1:200</el>
+      </symbolenTouch200>
+      <symbolenTouchV>
+         <el>Scheidingslijn</el>
+         <el>Gebouw</el>
+      </symbolenTouchV>
+      <sectieCombiA>
+         <el>Railpot A</el>
+         <el>Railspoel A</el>
+         <el>PSSSL A</el>
+      </sectieCombiA>
+      <sectieCombiB>
+         <el>Railpot B</el>
+         <el>Railspoel B</el>
+         <el>PSSSL B</el>
+      </sectieCombiB>
+      <sectieCombiC>
+         <el>Railpot C</el>
+         <el>Railspoel C</el>
+         <el>PSSSL C</el>
+      </sectieCombiC>
+      <sectieCombiD>
+         <el>Railpot D</el>
+         <el>Railspoel D</el>
+         <el>PSSSL D</el>
+      </sectieCombiD>
+      <sectieCombi200A>
+         <el>Railpot 1:200 A</el>
+         <el>Railspoel 1:200 A</el>
+         <el>PSSSL 1:200 A</el>
+      </sectieCombi200A>
+      <sectieCombi200B>
+         <el>Railpot 1:200 B</el>
+         <el>Railspoel 1:200 B</el>
+         <el>PSSSL 1:200 B</el>
+      </sectieCombi200B>
+      <sectieCombi200C>
+         <el>Railpot 1:200 C</el>
+         <el>Railspoel 1:200 C</el>
+         <el>PSSSL 1:200 C</el>
+      </sectieCombi200C>
+      <sectieCombi200D>
+         <el>Railpot 1:200 D</el>
+         <el>Railspoel 1:200 D</el>
+         <el>PSSSL 1:200 D</el>
+      </sectieCombi200D>
+      <sectieEnkelB_C>
+         <el>Railpot enkel B</el>
+         <el>Railspoel enkel B</el>
+         <el>PSSSL enkel B</el>
+         <el>Railpot enkel C</el>
+         <el>Railspoel enkel C</el>
+         <el>PSSSL enkel C</el>
+      </sectieEnkelB_C>
+      <sectieEnkelA_D>
+         <el>Railpot enkel A</el>
+         <el>Railspoel enkel A</el>
+         <el>PSSSL enkel A</el>
+         <el>Railpot enkel D</el>
+         <el>Railspoel enkel D</el>
+         <el>PSSSL enkel D</el>
+      </sectieEnkelA_D>
+      <sectieEnkel200B_C>
+         <el>Railpot enkel 1:200 B</el>
+         <el>Railspoel enkel 1:200 B</el>
+         <el>PSSSL enkel 1:200 B</el>
+         <el>Railpot enkel 1:200 C</el>
+         <el>Railspoel enkel 1:200 C</el>
+         <el>PSSSL enkel 1:200 C</el>
+      </sectieEnkel200B_C>
+      <sectieEnkel200A_D>
+         <el>Railpot enkel 1:200 A</el>
+         <el>Railspoel enkel 1:200 A</el>
+         <el>PSSSL enkel 1:200 A</el>
+         <el>Railpot enkel 1:200 D</el>
+         <el>Railspoel enkel 1:200 D</el>
+         <el>PSSSL enkel 1:200 D</el>
+      </sectieEnkel200A_D>
+      <spoorIsolatie>
+         <el>Spoorisolatie los A</el>
+         <el>Spoorisolatie los B</el>
+         <el>Spoorisolatie eind A</el>
+         <el>Spoorisolatie eind B</el>
+      </spoorIsolatie>
+      <spoorIsolatieLos>
+         <el>Spoorisolatie los A</el>
+         <el>Spoorisolatie los B</el>
+      </spoorIsolatieLos>
+      <spoorIsolatie_1>
+         <el>Spoorisolatie los A</el>
+         <el>Spoorisolatie eind B</el>
+      </spoorIsolatie_1>
+      <spoorIsolatie_2>
+         <el>Spoorisolatie los B</el>
+         <el>Spoorisolatie eind A</el>
+      </spoorIsolatie_2>
+      <spoorIsolatie200>
+         <el>Spoorisolatie los 1:200 A</el>
+         <el>Spoorisolatie los 1:200 B</el>
+         <el>Spoorisolatie eind 1:200 A</el>
+         <el>Spoorisolatie eind 1:200 B</el>
+      </spoorIsolatie200>
+      <spoorIsolatie200Los>
+         <el>Spoorisolatie los 1:200 A</el>
+         <el>Spoorisolatie los 1:200 B</el>
+      </spoorIsolatie200Los>
+      <spoorIsolatie200_1>
+         <el>Spoorisolatie los 1:200 A</el>
+         <el>Spoorisolatie eind 1:200 B</el>
+      </spoorIsolatie200_1>
+      <spoorIsolatie200_2>
+         <el>Spoorisolatie los 1:200 B</el>
+         <el>Spoorisolatie eind 1:200 A</el>
+      </spoorIsolatie200_2>
+   </elementGroups>
+   <models>
+      <default name="Default" required="1" mustHaveElements="1">
+         <elements>
+            <!--tags die bij de onderstaande objecten behoren-->
+            <!--          aan geul-->
+            <_gilnummer name="[Tag] gil-nummer">
+               <properties type="37" gg="" level="" textString="ALL(0123456789)MIN(1)MAX(4)" tagName="gil-nummer" tagDisplay="0"/>
+            </_gilnummer>
+            <!--          aan gebouw en of symbool-->
+            <_objectNaamZichtbaar050 name="[Tag] objectnaam zichtbaar 050">
+               <properties type="37" gg="" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-050" class="0" color="bylevel=83" weight="bylevel=0" lineStyle="bylevel=0" textString="MIN(1)" textFont="INTL_ISO" textHeight="2.5" textWidth="2.5" tagName="objectnaam" tagDisplay="1"/>
+            </_objectNaamZichtbaar050>
+            <_objectNaamNietZichtbaar name="[Tag] objectnaam niet zichtbaar">
+               <properties type="37" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-018,$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-050,$(lvlPrefix)ALG-SCHEIDINGSLIJN" gg="" textString="MIN(1)" tagName="objectnaam" tagDisplay="0"/>
+            </_objectNaamNietZichtbaar>
+            <_objectNaamDetailZichtbaar name="[Tag] objectnaam_detail zichtbaar">
+               <properties type="37" gg="" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-050" class="0" color="bylevel=80,bylevel=83" weight="bylevel=0" lineStyle="bylevel=0" textFont="INTL_ISO" textHeight="1.0" textWidth="1.0" tagName="objectnaam_detail" tagDisplay="1"/>
+            </_objectNaamDetailZichtbaar>
+            <_objectNrZichtbaar name="[Tag] objectnummer zichtbaar">
+               <properties type="37" gg="" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-018,$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-050" class="0" color="bylevel=80,bylevel=83" weight="bylevel=0" lineStyle="bylevel=0" textString="MIN(1)" textFont="INTL_ISO" textHeight="0.9,1.25,2.5,0.36,0.5,1.0" textWidth="0.9,1.25,2.5,0.36,0.5,1.0" tagName="objectnummer" tagDisplay="1"/>
+            </_objectNrZichtbaar>
+            <!--          aan koker/buis-->
+            <_type name="[Tag] type">
+               <properties type="37" gg="" textString="" tagName="type" tagDisplay="0"/>
+            </_type>
+            <_omschrijving name="[Tag] omschrijving">
+               <properties type="37" gg="" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WEGKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WATERKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-KOKERTRACE-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-TIJDELIJK-AANHAALLIJN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" textString="" textFont="INTL_ISO" textHeight="0.9,0.36" textWidth="0.9,0.36" tagName="omschrijving" tagDisplay="TNN()"/>
+            </_omschrijving>
+            <_diepteBovenOfLinks name="[Tag] diepte boven of links">
+               <properties type="37" gg="" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WEGKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WATERKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-KOKERTRACE-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-TIJDELIJK-AANHAALLIJN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" textString="" textFont="INTL_ISO" textHeight="0.9,0.36" textWidth="0.9,0.36" tagName="diepte boven of links" tagDisplay="TNN()"/>
+            </_diepteBovenOfLinks>
+            <_diepteOnderOfRechts name="[Tag] diepte onder of rechts">
+               <properties type="37" gg="" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WEGKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WATERKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-KOKERTRACE-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-TIJDELIJK-AANHAALLIJN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" textString="" textFont="INTL_ISO" textHeight="0.9,0.36" textWidth="0.9,0.36" tagName="diepte onder of rechts" tagDisplay="TNN()"/>
+            </_diepteOnderOfRechts>
+            <_diepteTussen name="[Tag] diepte tussen">
+               <properties type="37" gg="" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WEGKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-WATERKRUISING-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-KOKERTRACE-AANHAALLIJN,$(lvlPrefix)TRACE-BESCHERMING-TIJDELIJK-AANHAALLIJN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" textString="" textFont="INTL_ISO" textHeight="0.9,0.36" textWidth="0.9,0.36" tagName="diepte tussen" tagDisplay="TNN()"/>
+            </_diepteTussen>
+            <_productiedatumKoker name="[Tag] productiedatum koker">
+               <properties type="37" gg="" textString="" tagName="productiedatum koker" tagDisplay="0"/>
+            </_productiedatumKoker>
+            <_productiedatumDeksel name="[Tag] productiedatum deksel">
+               <properties type="37" gg="" textString="" tagName="productiedatum deksel" tagDisplay="0"/>
+            </_productiedatumDeksel>
+            <_detailnummer name="[Tag] detailnummer">
+               <properties type="37" gg="" textString="" tagName="detailnummer" tagDisplay="TNN()"/>
+            </_detailnummer>
+            <!--            aan alle objecten-->
+            <_tekNaam name="[Tag] tekeningnaam">
+               <properties type="37" gg="" textString="MIN(1)$(_cadFileName)" tagName="tekeningnaam" tagDisplay="0"/>
+            </_tekNaam>
+            <_datum name="[Tag] datum">
+               <properties type="37" gg="" textString="ALL(0123456789-)MIN(1)" tagName="datum" tagDisplay="0"/>
+            </_datum>
+            <_opmerking name="[Tag] opmerking">
+               <properties type="37" gg="" tagName="opmerking" tagDisplay="TNN()"/>
+            </_opmerking>
+            <!--voorbeeld van geul (lijn object)-->
+            <geulIB name="Geultrace indienst" assetname= "Geultrace indienst">
+               <properties type="3,4" gg="" level="$(lvlPrefix)TRACE-INDIENST" class="0" color="bylevel=84" weight="bylevel=0" lineStyle="bylevel=0" tags="=(kabel.tekeningnaam;kabel.gil-nummer;kabel.datum)"/>
+               <relations pnt="end" allowMultipleRelations="1">
+                  <!--pnt = origin|end|first|last-->
+                  <rule group="1" type="element" file="master" model="Default" element="{alleGeulen}" gg="" pnt="end"/>
+                  <rule group="1" type="element" file="master" model="Default" element="{alleGeulen}" gg="" pnt="end"/>
+                  <rule group="2" type="element" file="master" model="Default" element="{symbolenOrigin}" gg="" pnt="origin"/>
+                  <rule group="3" type="element" file="master" model="Default" element="{symbolenTouch}" gg="" pnt="touch"/>
+                  <rule group="4" type="element" file="master" model="Default" element="{alleKokers}" gg="" pnt="end"/>
+                  <rule group="5" type="element" file="master" model="Default" element="Geultrace onbekend" gg="" pnt="end"/>
+                  <rule group="6" type="element" file="master" model="Default" element="Detailgebied" gg="" pnt="touch"/>
+                  <rule group="7" type="element" file="master" model="Default" element="{symbolenOrigin200}" gg="" pnt="origin"/>
+                  <rule group="8" type="element" file="master" model="Default" element="{symbolenTouch200}" gg="" pnt="touch"/>
+               </relations>
+            </geulIB>
+            <!--voorbeeld van een koker/buis object (lijn object bestaande uit meerdere elementen gegroepeerd middels gg)-->
+            <spoorKruising name="Spoorkruising" assetname= "Spoorkruising">
+               <!--1.2-->
+               <properties type="3,4" gg="1" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=Koker/Buis" lineScale="1.0" tags="=(koker.tekeningnaam;koker.gil-nummer;koker.datum;koker.omschrijving;koker.diepte boven of links;koker.diepte onder of rechts;koker.diepte tussen;koker.productiedatum koker;koker.productiedatum deksel;koker.type;koker.opmerking;koker.detailnummer)"/>
+               <relations pnt="end" allowMultipleRelations="1">
+                  <!--pnt = origin|end|first|last-->
+                  <rule group="1" type="element" file="master" model="Default" element="Spoorkruising-afdeklijn" gg="1" pnt="end"/>
+               </relations>
+            </spoorKruising>
+            <spoorKruising200 name="Spoorkruising 1:200" assetname= "Spoorkruising">
+               <!--1.2-->
+               <properties type="3,4" gg="1" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING (1-200)" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=Koker/Buis_200" lineScale="1.0" tags="=(koker.tekeningnaam;koker.gil-nummer;koker.datum;koker.omschrijving;koker.diepte boven of links;koker.diepte onder of rechts;koker.diepte tussen;koker.productiedatum koker;koker.productiedatum deksel;koker.type;koker.opmerking;koker.detailnummer)"/>
+               <relations pnt="end" allowMultipleRelations="1">
+                  <!--pnt = origin|end|first|last-->
+                  <rule group="1" type="element" file="master" model="Default" element="Spoorkruising-afdeklijn" gg="1" pnt="end"/>
+               </relations>
+            </spoorKruising200>
+            <spoorKruisingAanhaallijn name="Spoorkruising-aanhaallijn">
+               <!--1.2-->
+               <properties type="3,4" gg="1" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AANHAALLIJN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0">
+                  <relatedElement name="Spoorkruising met dezelfde gg" type="3,4" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING,$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING (1-200)" gg="=$(@gg)" requiredErrorMessage="Bijbehorende spoorkruising niet gevonden"/>
+               </properties>
+            </spoorKruisingAanhaallijn>
+            <spoorKruisingAfdeklijn name="Spoorkruising-afdeklijn">
+               <!--1.2-->
+               <properties type="3,4" gg="1" level="$(lvlPrefix)TRACE-BESCHERMING-SPOORKRUISING-AFDEKLIJN" class="0" color="bylevel=88" weight="bylevel=0" lineStyle="bylevel=0"/>
+               <relations pnt="end" allowMultipleRelations="1">
+                  <!--pnt = origin|end|first|last-->
+                  <rule group="1" type="element" file="master" model="Default" element="Spoorkruising" gg="1" pnt="end"/>
+                  <rule group="2" type="element" file="master" model="Default" element="Spoorkruising 1:200" gg="1" pnt="end"/>
+               </relations>
+            </spoorKruisingAfdeklijn>
+            <!--voorbeeld van een Gebouw object (dit kan als lijn object of als vlak object voorkomen)-->
+            <gebouw name="Gebouw" assetname= "Gebouw">
+               <properties type="3,4,6" gg="" level="$(lvlPrefix)GEBOUWEN" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" tags="=(gebouw.tekeningnaam;gebouw.objectnaam;gebouw.datum;gebouw.objectnaam_detail;gebouw.opmerking)" condition="" conditionErrorMessage="Foutieve invulling van de tags">
+                  <attributesToVariables>
+                     <tag.objectnaam>oNm</tag.objectnaam>
+                     <tag.objectnaam_detail>oNmDet</tag.objectnaam_detail>
+                  </attributesToVariables>
+               </properties>
+            </gebouw>
+            <!--voorbeeld van een RAIL Symbool (punt object)-->
+            <seinHoog name="Lichtsein hoog" assetname="Lichtsein hoog">
+               <properties type="2" gg="" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-018" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" cellName="B_S_sein_hoog_A,B_S_sein_hoog_B" scale="1.0" tags="=(sein_hoog.tekeningnaam;sein_hoog.objectnaam;sein_hoog.objectnummer;sein_hoog.datum;sein_hoog.opmerking)" condition="'$(oNm)'='S $(oNr)'" conditionErrorMessage="Foutieve invulling van de tags">
+                  <attributesToVariables>
+                     <tag.objectnummer>oNr</tag.objectnummer>
+                     <tag.objectnaam>oNm</tag.objectnaam>
+                  </attributesToVariables>
+               </properties>
+            </seinHoog>
+            <seinHoog200 name="Lichtsein hoog 1:200" assetname="Lichtsein hoog">
+               <properties type="2" gg="" level="$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-018" class="0" color="bylevel=80" weight="bylevel=0" lineStyle="bylevel=0" cellName="B_S_sein_hoog_A_200,B_S_sein_hoog_B_200" scale="1.0" tags="=(sein_hoog.tekeningnaam;sein_hoog.objectnaam;sein_hoog.objectnummer;sein_hoog.datum;sein_hoog.opmerking)" condition="'$(oNm)'='S $(oNr)'" conditionErrorMessage="Foutieve invulling van de tags">
+                  <attributesToVariables>
+                     <tag.objectnummer>oNr</tag.objectnummer>
+                     <tag.objectnaam>oNm</tag.objectnaam>
+                  </attributesToVariables>
+               </properties>
+            </seinHoog200>
+         </elements>
+      </default>
+   </models>
+</incontrol>

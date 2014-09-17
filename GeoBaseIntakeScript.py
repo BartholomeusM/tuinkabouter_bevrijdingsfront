@@ -19,7 +19,7 @@ import fnmatch
 # ------------------------------------------------------------------------------------------------------------
 # PYTHON CLASSES
 #
-# Initialiser():       		Class to perform initial set-up tasks
+# Initializer():       		Class to perform initial set-up tasks
 # Switch():            		Utility class to implement the C# Switch structure
 # FeatureProcessor(object)	FME PyCaller interface
 # ------------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ import fnmatch
 #
 # locate_files:        Scan a specific directory for the INCONTROL rules and text files.
 # extract_tvs_version:     Inspects the INCONTROL rule file and returns the TVS and it's version
-# collect_XPath_values: Returns an array with values from given XPath
+# collect_xpath_values: Returns an array with values from given XPath
 #   case:               Needed by the Switch class
 #
 #
@@ -44,9 +44,19 @@ gis_rules_file = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7
                  'GeobaseGis_Rules_TVS00002_V04.xml'
 search_dir = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7\\PoC\\Input'
 
+# test method for FME coupling test
+
+def test_appeltaart():
+    print("appeltaart")
+
+
 
 # Scan recursive through sourceDir for XML files 
 def locate_files(source_dir):
+    """
+
+    :rtype :
+    """
     result_list = list()
     try:
         if os.path.exists(source_dir):
@@ -61,7 +71,7 @@ def locate_files(source_dir):
 
 
 # Fetches the values from the xpath string
-def collect_XPath_values(gis_rules_file, xpath_value, tvs_type):
+def collect_xpath_values(gis_rules_file, xpath_value, tvs_type):
     results = {}
     doc = ET.parse(gis_rules_file)
     for parent in doc.findall(str(xpath_value).replace('%TVSPLACEHOLDER%', tvs_type)):
@@ -81,43 +91,44 @@ def collect_XPath_values(gis_rules_file, xpath_value, tvs_type):
     return results
 
 
-def case(*args):
-    return any((arg == switch.value for arg in args))
+class Initializer():
+    def __init__(self, geobase_rules_xml, source_dir, incontrol_errors_xml, incontrol_rules_xml):
 
+        self.tvs_data = {}  # todo: should this be declared here?
 
-class Initialiser():
-    def __init__(self, gisrules_file, source_dir, incontrol_errors_xml, incontrol_rules_xml):
-
-        self.tvs_data = {}
-        self._ruleFile = gisrules_file
+        # source xml files
+        self._incontrol_errors_xml = incontrol_errors_xml
+        self._incontrol_rules_xml = incontrol_rules_xml
+        self._geobase_rules_xml = geobase_rules_xml
         self._drop_location = source_dir
-        self.incontrol_errors_xml = incontrol_errors_xml
-        self.incontrol_rules_xml = incontrol_rules_xml
+
+        # state and message files
         self.ErrorMessage = ""
         self.state_is_ok = bool(1 != 1)
         self.dgn_files_ok = bool(1 != 1)
+
         # GIS rule xml consists of two types of validation rules, both of which need to be extracted
         self.rule_types = ["incontrol", "gis"]
 
     def extract_rules_collection(self, gis_rules_collection):
-        gis_rules_doc = ET.parse(self._ruleFile)
+        gis_rules_doc = ET.parse(self._geobase_rules_xml)
 
-        for type in self.rule_types:
+        for type_ in self.rule_types:
             for node in gis_rules_doc.findall(".//rules/validations/"
-                                              "{0}/rule[@version='{1}']".format(type, self.tvs_data["version"])):
+                                              "{0}/rule[@version='{1}']".format(type_, self.tvs_data["version"])):
                 # ToDo: Mapping rules moeten ook opgehaald worden
                 rule_values = {}  # Collection of all the rules
                 rule_values["what"] = node.get("what")
                 if node.get("levels") == "*":
                     rule_values["levels"] = node.get("levels")
                 else:
-                    rule_values["levels"] = collect_XPath_values(self._ruleFile, node.get("levels"),
+                    rule_values["levels"] = collect_xpath_values(self._geobase_rules_xml, node.get("levels"),
                                                                  self.tvs_data["type"])
                 rule_values["transformerTypes"] = node.get("transformerTypes")
                 rule_values["errorCode"] = node.get("errorCode")
                 rule_values["errorMessage"] = node.text
                 if node.get("conditionIsXpath") == "true":
-                    rule_values["condition"] = collect_XPath_values(self._ruleFile, node.get("condition"),
+                    rule_values["condition"] = collect_xpath_values(self._geobase_rules_xml, node.get("condition"),
                                                                     self.tvs_data["type"])
                 else:
                     rule_values["condition"] = node.get("condition")
@@ -125,11 +136,17 @@ class Initialiser():
                 self.state_is_ok = bool(1 == 1)
 
     def get_all_rules(self):
+        """
+        Parses GeoBase Loader GIS Rules XML and returns a dictionary of rules for validation and mapping.
+
+        """
+
         gis_rules_collection = {}
         incontrol_files = locate_files(self._drop_location)
 
         try:
             if incontrol_files is not None:
+                # noinspection PyTypeChecker
                 for item in incontrol_files:
                     if str.find(item, "_errors") != -1:  # We look for the INCONTROL error file
                         # Now we open this file to see if the INCONTROL process was successful
@@ -153,6 +170,7 @@ class Initialiser():
         finally:
             return gis_rules_collection
 
+
     def get_all_assets(self):
         """
         Parses Fugro INControl Rules XML and returns a dictionary of asset names and rules.
@@ -162,7 +180,7 @@ class Initialiser():
 
         try:
             # parse nodes containing assetnames
-            _tree = ET.parse(self.incontrol_rules_xml)
+            _tree = ET.parse(self._incontrol_rules_xml)
             _root = _tree.getroot()
             _nodes = _root.findall(".//*[@assetname]")
             for child in _nodes:
@@ -187,13 +205,17 @@ class Initialiser():
         tvs_data["type"] = root.attrib["xmlFile"].split("-")[0].rsplit("_")[3]
         tvs_data["collection"] = root.attrib["xmlFile"].split(".xml")[0].rsplit("_")[2]
 
+        # $(lvlPrefix) in asset_names_rules should be replaced with this value, based on collection
+
+        tvs_data["level_prefix"] = tvs_data["collection"] + "-"
+
         return tvs_data
 
     def close(self):
         pass
 
 
-# FME Python Caller Interface:
+# FME Python Caller Interface: ToDo: Should be removed from this file
 class FeatureProcessor(object):
     def __init__(self):
         pass
@@ -206,7 +228,7 @@ class FeatureProcessor(object):
             print("validationCounter: " + str(feature.getAttribute("_validationCounter")))
             print("Verwerken van feature " + str(feature.getAttribute("igds_graphic_group")))
 
-            starter = Initialiser(gis_rules_file, search_dir)
+            starter = Initializer(gis_rules_file, search_dir)
 
             validation_rules = starter.get_all_rules()
 
@@ -215,8 +237,6 @@ class FeatureProcessor(object):
             validation_name = "objectInsideCountry"
 
             current_validation_parameters = validation_rules[validation_name]
-
-            # print(current_validation_parameters)
 
             # set feature attributes from current validation
 
