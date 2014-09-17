@@ -40,8 +40,10 @@ def test_extract_tvs_data(initializer):
 
 #todo uitzoeken: assetnames wel of geen hoofdletter
 
+
 def test_get_assetnames(initializer):
     assert initializer.get_all_assets()["lichtsein hoog"]["level"] == "$(lvlPrefix)SYMBOLEN-SYMBOOLTEKSTEN-018"
+
 
 def test_incontrol_error_file_containing_errors_ends_process(initializer):
     pass
@@ -50,26 +52,33 @@ def test_incontrol_error_file_containing_errors_ends_process(initializer):
 def test_parse_incontrol_error_file():
     pass
 
+
 def test_parse_incontrol_rule_file():
     pass
+
 
 def test_parse_gis_rule_file():
     pass
 
+
 def test_get_rules_collection(initializer):
     assert initializer.get_all_rules()
+
 
 def test_total_number_of_rules(initializer):
     _gis_rules_collection = initializer.get_all_rules()
     assert len(_gis_rules_collection) == 28
 
+
 def test_get_sample_incontrol_validation_rule(initializer):
     _gis_rules_collection = initializer.get_all_rules()
     assert _gis_rules_collection["objectInsideCountry"]["condition"] == "input\shapes\land.shp"
 
+
 def test_get_sample_gis_validation_rule(initializer):
     _gis_rules_collection = initializer.get_all_rules()
     assert _gis_rules_collection["objectOkforNetworkTraceLevels"]["condition"] == "no under or overshoot"
+
 
 def test_get_sample_mapping_rule(initializer):
     _gis_rules_collection = initializer.get_all_rules()

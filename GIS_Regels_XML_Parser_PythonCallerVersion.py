@@ -1,31 +1,34 @@
+# noinspection PyPep8Naming
 import xml.etree.ElementTree as ET
-import os, fnmatch
+import os
+import fnmatch
+
 
 
 # ------------------------------------------------------------------------------------------------------------
 #
-#	Python code writen by A. Dames, Atos Nederland BV (andre.dames@atos.net), jun 2014
+# Python code writen by A. Dames, Atos Nederland BV (andre.dames@atos.net), jun 2014
 #
-#------------------------------------------------------------------------------------------------------------		
-#                                               DESCRIPTION                      
+# ------------------------------------------------------------------------------------------------------------
+# DESCRIPTION
 #
 # This file will be used in the GEOBASEII validation and mapping process. This file will read the INCONTROL 
 # delivery location and then use INCONTROL rules file together with the GIS rules file to supply the FME
 # workbenches with parameters within an FME workspace PyCaller transformer
 #
-#------------------------------------------------------------------------------------------------------------
-#												PYTHON CLASSES
+# ------------------------------------------------------------------------------------------------------------
+# PYTHON CLASSES
 #
-#	Initialiser():       		Class to perform initial set-up tasks
-#   switch():            		Utility class to implement the C# switch structure
-#   FeatureProcessor(object)	FME PyCaller interface
-#------------------------------------------------------------------------------------------------------------
-#                                               PYTHON FUNCTIONS
+# Initialiser():       		Class to perform initial set-up tasks
+# Switch():            		Utility class to implement the C# Switch structure
+# FeatureProcessor(object)	FME PyCaller interface
+# ------------------------------------------------------------------------------------------------------------
+# PYTHON FUNCTIONS
 #
-#   LocateFiles:        Scan a specific directory for the INCONTROL rules and text files.
-#   extract_tvs_version:     Inspects the INCONTROL rule file and returns the TVS and it's version
-#   CollectXPathValues: Returns an array with values from given XPath
-#   case:               Needed by the switch class
+# locate_files:        Scan a specific directory for the INCONTROL rules and text files.
+# extract_tvs_version:     Inspects the INCONTROL rule file and returns the TVS and it's version
+# collect_XPath_values: Returns an array with values from given XPath
+#   case:               Needed by the Switch class
 #
 #
 #
@@ -36,46 +39,45 @@ import os, fnmatch
 #
 #------------------------------------------------------------------------------------------------------------
 
-
 # Declarations
+gis_rules_file = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7\\PoC\Input\\' \
+                 'GeobaseGis_Rules_TVS00002_V04.xml'
+search_dir = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7\\PoC\\Input'
 
-gisRulesFile = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7\\PoC\Input\\GeobaseGis_Rules_TVS00002_V04.xml'
-searchDir = 'C:\\Users\\a503449\\Documents\\Projecten\\ProRail\\GeobaseTVS7\\PoC\\Input'
 
 # Scan recursive through sourceDir for XML files 
-def LocateFiles(sourceDir):
-    resultList = list()
+def locate_files(source_dir):
+    result_list = list()
     try:
-        if os.path.exists(sourceDir):
-            for file in fnmatch.filter(os.listdir(sourceDir), "*.xml"):
-                resultList.append(sourceDir + file)
+        if os.path.exists(source_dir):
+            for file in fnmatch.filter(os.listdir(source_dir), "*.xml"):
+                result_list.append(source_dir + file)
         else:
             raise
     except:
-        resultList = None
+        result_list = None
     finally:
-        return resultList
+        return result_list
 
 
-#fetches the values from the xpath string
-def CollectXPathValues(gis_rules_file, xpathValue, tvsType):
+# Fetches the values from the xpath string
+def collect_XPath_values(gis_rules_file, xpath_value, tvs_type):
     results = {}
     doc = ET.parse(gis_rules_file)
-    for parent in doc.findall(str(xpathValue).replace('%TVSPLACEHOLDER%', tvsType)):
-        if parent.text != '\n      ' and parent.text != None:
-            parentValue = parent.text
-            results["values"] = parentValue.split(",")
+    for parent in doc.findall(str(xpath_value).replace('%TVSPLACEHOLDER%', tvs_type)):
+        if parent.text != '\n      ' and parent.text is not None:
+            parent_value = parent.text
+            results["values"] = parent_value.split(",")
         else:
-            attribValue = parent.get("values")
-            if attribValue != None:
-                results["values"] = attribValue.split()
+            attrib_value = parent.get("values")
+            if attrib_value is not None:
+                results["values"] = attrib_value.split()
             else:
                 for child in parent:
-                    if child.get("name") != None:
+                    if child.get("name") is not None:
                         results[child.get("name")] = child.text
                     else:
                         results[child.text] = child.text
-
     return results
 
 
@@ -84,63 +86,63 @@ def case(*args):
 
 
 class Initialiser():
-    def __init__(self, gisrulesFile, sourceDir, incontrol_errors_xml, incontrol_rules_xml):
+    def __init__(self, gisrules_file, source_dir, incontrol_errors_xml, incontrol_rules_xml):
 
         self.tvs_data = {}
-        self._ruleFile = gisrulesFile
-        self._dropLocation = sourceDir
+        self._ruleFile = gisrules_file
+        self._drop_location = source_dir
         self.incontrol_errors_xml = incontrol_errors_xml
         self.incontrol_rules_xml = incontrol_rules_xml
         self.ErrorMessage = ""
-        self.StateIsOk = bool(1 != 1)
-        self.DgnFilesOk = bool(1 != 1)
+        self.state_is_ok = bool(1 != 1)
+        self.dgn_files_ok = bool(1 != 1)
         # GIS rule xml consists of two types of validation rules, both of which need to be extracted
         self.rule_types = ["incontrol", "gis"]
 
-
-
     def extract_rules_collection(self, gis_rules_collection):
-        gisRuleDoc = ET.parse(self._ruleFile)
+        gis_rules_doc = ET.parse(self._ruleFile)
 
         for type in self.rule_types:
-            for node in gisRuleDoc.findall(".//rules/validations/{0}/rule[@version='{1}']".format(type,
-                    self.tvs_data["version"])):  # Mapping rules moeten ook opgehaald worden
-                ruleValues = {}  #Collection of all the rules
-                ruleValues["what"] = node.get("what")
+            for node in gis_rules_doc.findall(".//rules/validations/"
+                                              "{0}/rule[@version='{1}']".format(type, self.tvs_data["version"])):
+                # ToDo: Mapping rules moeten ook opgehaald worden
+                rule_values = {}  # Collection of all the rules
+                rule_values["what"] = node.get("what")
                 if node.get("levels") == "*":
-                    ruleValues["levels"] = node.get("levels")
+                    rule_values["levels"] = node.get("levels")
                 else:
-                    ruleValues["levels"] = CollectXPathValues(self._ruleFile, node.get("levels"), self.tvs_data["type"])
-                ruleValues["transformerTypes"] = node.get("transformerTypes")
-                ruleValues["errorCode"] = node.get("errorCode")
-                ruleValues["errorMessage"] = node.text
-                if node.get("conditionIsXpath") == "true":
-                    ruleValues["condition"] = CollectXPathValues(self._ruleFile, node.get("condition"),
+                    rule_values["levels"] = collect_XPath_values(self._ruleFile, node.get("levels"),
                                                                  self.tvs_data["type"])
+                rule_values["transformerTypes"] = node.get("transformerTypes")
+                rule_values["errorCode"] = node.get("errorCode")
+                rule_values["errorMessage"] = node.text
+                if node.get("conditionIsXpath") == "true":
+                    rule_values["condition"] = collect_XPath_values(self._ruleFile, node.get("condition"),
+                                                                    self.tvs_data["type"])
                 else:
-                    ruleValues["condition"] = node.get("condition")
-                gis_rules_collection[node.get("name")] = ruleValues
-                self.StateIsOk = bool(1 == 1)
+                    rule_values["condition"] = node.get("condition")
+                gis_rules_collection[node.get("name")] = rule_values
+                self.state_is_ok = bool(1 == 1)
 
     def get_all_rules(self):
         gis_rules_collection = {}
-        incontrolFiles = LocateFiles(self._dropLocation)
+        incontrol_files = locate_files(self._drop_location)
 
         try:
-            if incontrolFiles != None:
-                for item in incontrolFiles:
-                    if str.find(item, "_errors") != -1:  #We look for the INCONTROL error file
-                        #Now we open this file to see if the INCONTROL process was successful
-                        errorDoc = ET.parse(item)
-                        errorRootNode = errorDoc.getroot()
-                        errorChildNodes = errorRootNode.getchildren()
-                        if errorChildNodes:  #Process was not ok
+            if incontrol_files is not None:
+                for item in incontrol_files:
+                    if str.find(item, "_errors") != -1:  # We look for the INCONTROL error file
+                        # Now we open this file to see if the INCONTROL process was successful
+                        error_doc = ET.parse(item)
+                        error_root_node = error_doc.getroot()
+                        error_child_nodes = error_root_node.getchildren()
+                        if error_child_nodes:  # Process was not ok
                             raise Exception(
                                 "The error controlfile {0} contains errors! Process wil terminate.".format(item))
                         #Parse name of INControl rule file used and distill tvs (rules) version from it
                         self.tvs_data = self.extract_tvs_data(item)
-                    else:  #We process the rule file NB! We assume that we only have two xml files
-                            # in directory ;  todo also process incontrol_rules file for asset names
+                    else:  # We process the rule file NB! We assume that we only have two xml files
+                        # in directory ;  todo also process incontrol_rules file for asset names
                         if self.tvs_data:
                             self.extract_rules_collection(gis_rules_collection)
 
@@ -152,26 +154,33 @@ class Initialiser():
             return gis_rules_collection
 
     def get_all_assets(self):
-        # returns dict of assetnames and their incontrol attributes to identify them in FME
-        all_assets= {}
+        """
+        Parses Fugro INControl Rules XML and returns a dictionary of asset names and rules.
 
-        # parse nodes containing assetnames
-        _tree = ET.parse(self.incontrol_rules_xml)
-        _root = _tree.getroot()
-        _nodes = _root.findall(".//*[@assetname]")
-        for child in _nodes:
-            _properties = child.findall(".//properties")[0]
-            #create list of attributes for each 'assetname'
-            _properties_dict = _properties.attrib
-            all_assets[child.attrib["assetname"]] = _properties_dict
+        """
+        asset_rules_collection = {}
 
-        return all_assets
+        try:
+            # parse nodes containing assetnames
+            _tree = ET.parse(self.incontrol_rules_xml)
+            _root = _tree.getroot()
+            _nodes = _root.findall(".//*[@assetname]")
+            for child in _nodes:
+                _properties = child.findall(".//properties")[0]
+                asset_rules_collection[child.attrib["assetname"]] = _properties.attrib
+        except Exception as exc:
+            self.ErrorMessage = "The following message was received from verification process \n {0}".format(
+                exc.args[0])
+            asset_rules_collection = None
 
+        finally:
+            return asset_rules_collection
 
-    def extract_tvs_data(self, errorFileName):
+    @staticmethod
+    def extract_tvs_data(error_file_name):
         tvs_data = {}
 
-        tree = ET.parse(errorFileName)
+        tree = ET.parse(error_file_name)
         root = tree.getroot()
         tvs_data["collection_type_version"] = root.attrib["xmlFile"].rsplit("DR_")[1].split(".xml")[0]
         tvs_data["version"] = root.attrib["xmlFile"].split(".xml")[0].split("-V")[1]
@@ -183,6 +192,7 @@ class Initialiser():
     def close(self):
         pass
 
+
 # FME Python Caller Interface:
 class FeatureProcessor(object):
     def __init__(self):
@@ -191,33 +201,32 @@ class FeatureProcessor(object):
     def input(self, feature):
 
         try:
-
             # logging prints
 
             print("validationCounter: " + str(feature.getAttribute("_validationCounter")))
             print("Verwerken van feature " + str(feature.getAttribute("igds_graphic_group")))
 
-            starter = Initialiser(gisRulesFile, searchDir)
+            starter = Initialiser(gis_rules_file, search_dir)
 
-            validationRules = starter.get_all_rules()
+            validation_rules = starter.get_all_rules()
 
             # ToDo Name to be determined from list of validations
 
-            validationName = "objectInsideCountry"
+            validation_name = "objectInsideCountry"
 
-            currentValidationParameters = validationRules[validationName]
+            current_validation_parameters = validation_rules[validation_name]
 
-            # print(currentValidationParameters)
+            # print(current_validation_parameters)
 
             # set feature attributes from current validation
 
-            feature.setAttribute("_validationName", validationName)
-            feature.setAttribute("_validationWhat", str(currentValidationParameters["what"]))
-            feature.setAttribute("_validationCondition", str(currentValidationParameters["condition"]))
-            feature.setAttribute("_validationLevels", str(currentValidationParameters["levels"]))
-            feature.setAttribute("_validationErrorcode", str(currentValidationParameters["errorCode"]))
+            feature.setAttribute("_validationName", validation_name)
+            feature.setAttribute("_validationWhat", str(current_validation_parameters["what"]))
+            feature.setAttribute("_validationCondition", str(current_validation_parameters["condition"]))
+            feature.setAttribute("_validationLevels", str(current_validation_parameters["levels"]))
+            feature.setAttribute("_validationErrorcode", str(current_validation_parameters["errorCode"]))
             feature.setAttribute("_validationTransformerType",
-                                 str(currentValidationParameters["transformerTypes"]))  #todo : 's' te veel?
+                                 str(current_validation_parameters["transformerTypes"]))  # ToDo : 's' te veel?
         except Exception as err:
             print('ERROR: %s\n' % str(err))
         finally:
